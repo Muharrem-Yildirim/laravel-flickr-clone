@@ -13081,7 +13081,9 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 var Categories = ["All", "Environment", "City", "Animal"];
 var Button = (0,styled_components__WEBPACK_IMPORTED_MODULE_3__["default"])(_mui_material_Button__WEBPACK_IMPORTED_MODULE_4__["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    border-radius: 0px;\n    border-right-width: 0;\n\n    &:first-of-type {\n        border-top-left-radius: 4px;\n        border-bottom-left-radius: 4px;\n    }\n    &:last-of-type {\n        border-top-right-radius: 4px;\n        border-bottom-right-radius: 4px;\n\n        border-right-width: 1px;\n    }\n\n    &:hover:not(&:last-of-type) {\n        & + Button {\n            border-left-width: 0;\n        }\n    }\n"])));
-function CategorySelector() {
+function CategorySelector(_ref) {
+  var isLoaded = _ref.isLoaded;
+
   var _useCategoryHook = (0,_hooks_useCategoryHook__WEBPACK_IMPORTED_MODULE_1__["default"])(),
       _useCategoryHook2 = _slicedToArray(_useCategoryHook, 2),
       selectedCategory = _useCategoryHook2[0],
@@ -13099,6 +13101,7 @@ function CategorySelector() {
       },
       color: "success",
       size: "small",
+      disabled: !isLoaded,
       children: (idx === 0 ? "" : "#") + category
     }, idx);
   });
@@ -13300,14 +13303,16 @@ var DailyPhotos = /*#__PURE__*/function (_React$Component) {
           variant: "p",
           className: "font-montserrat",
           fontSize: 20,
-          children: "Daily Photos"
+          children: "Explore"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
           style: {
             display: "flex",
             justifyContent: "center",
             marginBottom: 20
           },
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_CategorySelector__WEBPACK_IMPORTED_MODULE_4__["default"], {})
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_CategorySelector__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            isLoaded: this.state.isLoaded
+          })
         }), Layout(this.state)]
       });
     }

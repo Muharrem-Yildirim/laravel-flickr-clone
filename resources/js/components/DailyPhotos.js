@@ -99,7 +99,7 @@ class DailyPhotos extends React.Component {
                     className="font-montserrat"
                     fontSize={20}
                 >
-                    Daily Photos
+                    Explore
                 </Typography>
                 <div
                     style={{
@@ -108,7 +108,7 @@ class DailyPhotos extends React.Component {
                         marginBottom: 20,
                     }}
                 >
-                    <CategorySelector />
+                    <CategorySelector isLoaded={this.state.isLoaded} />
                 </div>
                 {Layout(this.state)}
             </>

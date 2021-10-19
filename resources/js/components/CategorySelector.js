@@ -27,7 +27,7 @@ const Button = styled(MuiButton)`
     }
 `;
 
-export default function CategorySelector() {
+export default function CategorySelector({ isLoaded }) {
     const [selectedCategory, setSelectedCategory] = useCategoryHook();
 
     const onClickCategory = (e, categoryId) => {
@@ -42,6 +42,7 @@ export default function CategorySelector() {
                 key={idx}
                 color="success"
                 size="small"
+                disabled={!isLoaded}
             >
                 {(idx === 0 ? "" : "#") + category}
             </Button>
