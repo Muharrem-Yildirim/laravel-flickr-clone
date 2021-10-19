@@ -43,7 +43,7 @@ export default function CategorySelector() {
                 color="success"
                 size="small"
             >
-                {category}
+                {(idx === 0 ? "" : "#") + category}
             </Button>
         );
     });

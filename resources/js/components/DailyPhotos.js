@@ -99,7 +99,7 @@ class DailyPhotos extends React.Component {
                     className="font-montserrat"
                     fontSize={20}
                 >
-                    Popular
+                    Daily Photos
                 </Typography>
                 <div
                     style={{

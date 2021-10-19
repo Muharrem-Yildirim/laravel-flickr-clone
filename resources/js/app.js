@@ -18,19 +18,18 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import { Grid } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
 
 import "animate.css";
 import store from "./store";
 
 import { Provider } from "react-redux";
 import DailyPhotos from "./components/DailyPhotos";
+import Navbar from "./components/Navbar";
 
 function App() {
     return (
         <div className="app">
-            {/* <Navbar /> */}
+            <Navbar />
             <Grid
                 container
                 spacing={5}
@@ -50,7 +49,7 @@ export default App;
 if (document.getElementById("root")) {
     ReactDOM.render(
         <Provider store={store}>
-            <App />{" "}
+            <App />
         </Provider>,
         document.getElementById("root")
     );

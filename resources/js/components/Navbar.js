@@ -8,13 +8,23 @@ import IconButton from "@mui/material/IconButton";
 // // import MenuIcon from "@mui/icons-material/Menu";
 // import MenuIcon from "@material-ui/icons/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
+import { Grid } from "@mui/material";
 
 export default function Navbar() {
     return (
-        <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
-                <Toolbar>
-                    <IconButton
+        <AppBar position="static" color="success">
+            <Toolbar>
+                <Grid
+                    item
+                    xs={8}
+                    style={{
+                        display: "flex",
+                        alignItems: "center",
+                        marginLeft: "auto",
+                        marginRight: "auto",
+                    }}
+                >
+                    {/* <IconButton
                         size="large"
                         edge="start"
                         color="inherit"
@@ -22,17 +32,21 @@ export default function Navbar() {
                         sx={{ mr: 2 }}
                     >
                         <MenuIcon />
-                    </IconButton>
+                    </IconButton> */}
                     <Typography
                         variant="h6"
                         component="div"
                         sx={{ flexGrow: 1 }}
+                        style={{
+                            fontWeight: "bold",
+                        }}
+                        className="font-montserrat"
                     >
-                        News
+                        Flickr
                     </Typography>
-                    <Button color="inherit">Login</Button>
-                </Toolbar>
-            </AppBar>
-        </Box>
+                    {/* <Button color="inherit">Login</Button> */}
+                </Grid>
+            </Toolbar>
+        </AppBar>
     );
 }
