@@ -31,13 +31,23 @@ export default function CategorySelector({ isLoaded }) {
     const [selectedCategory, setSelectedCategory] = useCategoryHook();
 
     const onClickCategory = (e, categoryId) => {
-        setSelectedCategory(categoryId);
+        setSelectedCategory(categoryId === 0 ? null : Categories[categoryId]);
     };
 
     return Categories.map((category, idx) => {
         return (
             <Button
-                variant={idx === selectedCategory ? "contained" : "outlined"}
+                variant={
+                    (
+                        Categories[idx] === selectedCategory
+                            ? true
+                            : selectedCategory === null && idx === 0
+                            ? true
+                            : Categories[idx] === selectedCategory
+                    )
+                        ? "contained"
+                        : "outlined"
+                }
                 onClick={(e) => onClickCategory(e, idx)}
                 key={idx}
                 color="success"

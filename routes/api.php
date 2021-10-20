@@ -36,13 +36,28 @@ Route::get('daily-photos', function (Request $request) {
 });
 
 
+
+
+
+
 Route::get('daily-photos/{tag_id}', function (Request $request, $tag_id) {
     sleep(0.1);
 
-    $photos = Tag::with("photos.tags")->where("id", $tag_id)->get()[0]["photos"];
+    $photos = Tag::with("photos.tags")->where("id", $tag_id)->get()->first();
 
     return response()->json(
+        $photos == null ? array() : $photos["photos"]
+    );
+})->where('tag_id', '[0-9]+');
 
-        $photos
+
+Route::get('daily-photos/{tag_name}', function (Request $request, $tag_name) {
+    sleep(0.1);
+
+
+    $photos = Tag::with("photos.tags")->where("name", $tag_name)->get()->first();
+
+    return response()->json(
+        $photos == null ? array() : $photos["photos"]
     );
 });

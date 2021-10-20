@@ -13473,12 +13473,12 @@ function CategorySelector(_ref) {
       setSelectedCategory = _useCategoryHook2[1];
 
   var onClickCategory = function onClickCategory(e, categoryId) {
-    setSelectedCategory(categoryId);
+    setSelectedCategory(categoryId === 0 ? null : Categories[categoryId]);
   };
 
   return Categories.map(function (category, idx) {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Button, {
-      variant: idx === selectedCategory ? "contained" : "outlined",
+      variant: (Categories[idx] === selectedCategory ? true : selectedCategory === null && idx === 0 ? true : Categories[idx] === selectedCategory) ? "contained" : "outlined",
       onClick: function onClick(e) {
         return onClickCategory(e, idx);
       },
@@ -13599,18 +13599,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -13717,12 +13705,12 @@ var DailyPhotos = /*#__PURE__*/function (_React$Component) {
           images: []
         });
       }, function () {
-        _axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("/api/daily-photos" + (_this2.props.selectedCategory === 0 ? "" : "/" + _this2.props.selectedCategory)).then(function (_ref2) {
+        _axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("/api/daily-photos" + (_this2.props.selectedCategory === null ? "" : "/" + _this2.props.selectedCategory)).then(function (_ref2) {
           var data = _ref2.data;
 
           _this2.setState(function (prevState) {
             return _objectSpread(_objectSpread({}, prevState), {}, {
-              images: [].concat(_toConsumableArray(prevState.images), _toConsumableArray(data)),
+              images: data,
               isLoaded: true
             });
           });
@@ -14004,7 +13992,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function useCategoryHook(friendID) {
-  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__.useState(0),
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__.useState(null),
       _React$useState2 = _slicedToArray(_React$useState, 2),
       selectedCategory = _React$useState2[0],
       setSelectedCategory = _React$useState2[1];

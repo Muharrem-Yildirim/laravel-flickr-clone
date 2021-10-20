@@ -60,7 +60,7 @@ class DailyPhotos extends React.Component {
                 axios
                     .get(
                         "/api/daily-photos" +
-                            (this.props.selectedCategory === 0
+                            (this.props.selectedCategory === null
                                 ? ""
                                 : "/" + this.props.selectedCategory)
                     )
@@ -68,7 +68,7 @@ class DailyPhotos extends React.Component {
                         this.setState((prevState) => {
                             return {
                                 ...prevState,
-                                images: [...prevState.images, ...data],
+                                images: data,
                                 isLoaded: true,
                             };
                         });

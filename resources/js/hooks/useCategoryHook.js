@@ -2,7 +2,7 @@ import React from "react";
 import store from "../store";
 
 export default function useCategoryHook(friendID) {
-    const [selectedCategory, setSelectedCategory] = React.useState(0);
+    const [selectedCategory, setSelectedCategory] = React.useState(null);
 
     React.useEffect(() => {
         store.dispatch({
