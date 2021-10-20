@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Photo extends Migration
+class CreateTags extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class Photo extends Migration
      */
     public function up()
     {
-        //
-        Schema::create('photos', function (Blueprint $table) {
+        Schema::create('tags', function (Blueprint $table) {
             $table->id();
-            $table->string('url');
-            // $table->integer('category_id')->default(0);
+            $table->string("name");
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class Photo extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('photos');
+        Schema::dropIfExists('tags');
     }
 }

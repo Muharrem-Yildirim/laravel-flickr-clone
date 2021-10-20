@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Photo;
+use App\Models\Tag;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class PhotoFactory extends Factory
+class TagFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Photo::class;
+    protected $model = Tag::class;
 
     /**
      * Define the model's default state.
@@ -22,9 +22,7 @@ class PhotoFactory extends Factory
     public function definition()
     {
         return [
-            //
-            "url" => "https://source.unsplash.com/random"
-
+            "name" => $this->faker->word()
         ];
     }
 }

@@ -2,9 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Models\Photo;
 use \App\Http\Controllers\AuthController;
-
+use App\Models\Photo;
+use App\Models\Tag;
+use App\Models\Taggable;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,25 +30,19 @@ Route::middleware('auth:sanctum')->get("/refresh", [AuthController::class, 'refr
 Route::get('daily-photos', function (Request $request) {
     sleep(0.1);
 
-    $photos = Photo::all()->random(0);
-
-    // foreach ($photos as $photo) {
-    //     list($width, $height, $type, $attr) = getimagesize($photo["url"]);
-
-    //     $photo["size"] = [$width, $height];
-    // }
+    $photos = Photo::with("tags")->get()->random(5);
 
     return response()->json($photos);
 });
 
 
-Route::get('daily-photos/{categoryId}', function (Request $request, $categoryId) {
+Route::get('daily-photos/{tag_id}', function (Request $request, $tag_id) {
     sleep(0.1);
-    // $photos = Photo::where("category_id", $categoryId)->limit(15)->get();
 
-    // foreach ($photos as $photo) {
-    //     echo getimagesize($photo["url"]);
-    // }
+    $photos = Tag::with("photos.tags")->where("id", $tag_id)->get()[0]["photos"];
 
-    return response()->json(Photo::where("category_id", $categoryId)->limit(15)->get());
+    return response()->json(
+
+        $photos
+    );
 });
