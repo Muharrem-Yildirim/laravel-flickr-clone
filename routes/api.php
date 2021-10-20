@@ -27,7 +27,7 @@ Route::post("/register", [AuthController::class, "register"]);
 Route::middleware('auth:sanctum')->get("/user", [AuthController::class, 'profile']);
 Route::middleware('auth:sanctum')->get("/refresh", [AuthController::class, 'refresh']);
 
-Route::get('daily-photos', function (Request $request) {
+Route::get('explore', function (Request $request) {
     sleep(0.1);
 
     $photos = Photo::with("tags")->get()->random(5);
@@ -40,7 +40,7 @@ Route::get('daily-photos', function (Request $request) {
 
 
 
-Route::get('daily-photos/{tag_id}', function (Request $request, $tag_id) {
+Route::get('explore/{tag_id}', function (Request $request, $tag_id) {
     sleep(0.1);
 
     $photos = Tag::with("photos.tags")->where("id", $tag_id)->get()->first();
@@ -51,7 +51,7 @@ Route::get('daily-photos/{tag_id}', function (Request $request, $tag_id) {
 })->where('tag_id', '[0-9]+');
 
 
-Route::get('daily-photos/{tag_name}', function (Request $request, $tag_name) {
+Route::get('explore/{tag_name}', function (Request $request, $tag_name) {
     sleep(0.1);
 
 

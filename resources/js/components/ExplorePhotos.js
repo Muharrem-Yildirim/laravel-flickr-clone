@@ -1,9 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import { Grid, Typography } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
+import { Typography } from "@mui/material";
 import Masonry from "@mui/lab/Masonry";
 import MasonryItem from "@mui/lab/MasonryItem";
 import "animate.css";
@@ -12,7 +8,6 @@ import CategorySelector from "./CategorySelector";
 import { connect } from "react-redux";
 import CircularProgress from "@mui/material/CircularProgress";
 import DailyPhotoItem from "./ExplorePhotoItem";
-import "../../sass/app.scss";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 const Layout = ({ isLoaded, images, fetchImages }) => {
@@ -59,7 +54,7 @@ class DailyPhotos extends React.Component {
             () => {
                 axios
                     .get(
-                        "/api/daily-photos" +
+                        "/api/explore" +
                             (this.props.selectedCategory === null
                                 ? ""
                                 : "/" + this.props.selectedCategory)
