@@ -3,9 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\AuthController;
-use App\Models\Photo;
-use App\Models\Tag;
-use App\Models\Taggable;
+use \App\Http\Controllers\ExploreController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,37 +26,6 @@ Route::post("/register", [AuthController::class, "register"]);
 Route::middleware('auth:sanctum')->get("/user", [AuthController::class, 'profile']);
 Route::middleware('auth:sanctum')->get("/refresh", [AuthController::class, 'refresh']);
 
-Route::get('explore', function (Request $request) {
-    sleep(0.1);
-
-    $photos = Photo::with("tags")->get()->random(20);
-
-    return response()->json($photos);
-});
-
-
-
-
-
-
-Route::get('explore/{tag_id}', function (Request $request, $tag_id) {
-    sleep(0.1);
-
-    $photos = Tag::with("photos.tags")->where("id", $tag_id)->get()->first();
-
-    return response()->json(
-        $photos == null ? array() : $photos["photos"]
-    );
-})->where('tag_id', '[0-9]+');
-
-
-Route::get('explore/{tag_name}', function (Request $request, $tag_name) {
-    sleep(0.1);
-
-
-    $photos = Tag::with("photos.tags")->where("name", $tag_name)->get()->first();
-
-    return response()->json(
-        $photos == null ? array() : $photos["photos"]
-    );
-});
+Route::get('explore', [ExploreController::class, 'all']);
+Route::get('explore/{tag_id}', [ExploreController::class, 'getByTagId'])->where('tag_id', '[0-9]+');
+Route::get('explore/{tag_name}', [ExploreController::class, 'getByTagName']);
