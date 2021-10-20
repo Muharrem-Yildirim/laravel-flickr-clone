@@ -23,24 +23,29 @@ import "animate.css";
 import store from "./store";
 
 import { Provider } from "react-redux";
-import DailyPhotos from "./components/DailyPhotos";
+import ExplorePhotos from "./components/ExplorePhotos";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import "../sass/app.scss";
 
 function App() {
     return (
-        <div className="app">
-            <Navbar />
-            <Grid
-                container
-                spacing={5}
-                justifyContent={"center"}
-                style={{ marginTop: 10 }}
-            >
-                <Grid item xs={8}>
-                    <DailyPhotos />
+        <>
+            <div className="main">
+                <Navbar />
+                <Grid
+                    container
+                    spacing={5}
+                    justifyContent={"center"}
+                    style={{ marginTop: 10 }}
+                >
+                    <Grid item xs={8}>
+                        <ExplorePhotos />
+                    </Grid>
                 </Grid>
-            </Grid>
-        </div>
+            </div>
+            <Footer />
+        </>
     );
 }
 

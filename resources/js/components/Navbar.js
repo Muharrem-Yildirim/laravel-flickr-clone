@@ -42,7 +42,7 @@ export default function Navbar() {
                         }}
                         className="font-montserrat"
                     >
-                        Flickr
+                        flickr
                     </Typography>
                     {/* <Button color="inherit">Login</Button> */}
                 </Grid>

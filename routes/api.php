@@ -22,11 +22,26 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('daily-photos', function (Request $request) {
     sleep(0.1);
-    return response()->json(Photo::all()->take(10));
+
+    $photos = Photo::all()->random(0);
+
+    // foreach ($photos as $photo) {
+    //     list($width, $height, $type, $attr) = getimagesize($photo["url"]);
+
+    //     $photo["size"] = [$width, $height];
+    // }
+
+    return response()->json($photos);
 });
 
 
 Route::get('daily-photos/{categoryId}', function (Request $request, $categoryId) {
     sleep(0.1);
+    // $photos = Photo::where("category_id", $categoryId)->limit(15)->get();
+
+    // foreach ($photos as $photo) {
+    //     echo getimagesize($photo["url"]);
+    // }
+
     return response()->json(Photo::where("category_id", $categoryId)->limit(15)->get());
 });

@@ -11,10 +11,11 @@ import axios from "../axios";
 import CategorySelector from "./CategorySelector";
 import { connect } from "react-redux";
 import CircularProgress from "@mui/material/CircularProgress";
-import DailyPhotoItem from "./DailyPhotoItem";
+import DailyPhotoItem from "./ExplorePhotoItem";
 import "../../sass/app.scss";
+import InfiniteScroll from "react-infinite-scroll-component";
 
-const Layout = ({ isLoaded, images }) => {
+const Layout = ({ isLoaded, images, fetchImages }) => {
     return isLoaded == false ? (
         <div
             style={{
@@ -27,11 +28,9 @@ const Layout = ({ isLoaded, images }) => {
         </div>
     ) : (
         <>
-            <Masonry columns={6} spacing={1}>
+            <Masonry columns={6} spacing={1} style={{ overflow: "hidden" }}>
                 {images.map((img, idx) => (
-                    <MasonryItem key={img.id}>
-                        <DailyPhotoItem img={img} />
-                    </MasonryItem>
+                    <DailyPhotoItem img={img} key={img.id} />
                 ))}
             </Masonry>
         </>
@@ -69,7 +68,7 @@ class DailyPhotos extends React.Component {
                         this.setState((prevState) => {
                             return {
                                 ...prevState,
-                                images: data,
+                                images: [...prevState.images, ...data],
                                 isLoaded: true,
                             };
                         });
@@ -110,7 +109,7 @@ class DailyPhotos extends React.Component {
                 >
                     <CategorySelector isLoaded={this.state.isLoaded} />
                 </div>
-                {Layout(this.state)}
+                {Layout(this.state, this.fetchImages)}
             </>
         );
     }

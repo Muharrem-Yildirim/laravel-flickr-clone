@@ -5834,6 +5834,299 @@ const gridClasses = (0,_mui_core__WEBPACK_IMPORTED_MODULE_1__["default"])('MuiGr
 
 /***/ }),
 
+/***/ "./node_modules/@mui/material/Link/Link.js":
+/*!*************************************************!*\
+  !*** ./node_modules/@mui/material/Link/Link.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
+/* harmony import */ var _mui_utils__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @mui/utils */ "./node_modules/@mui/utils/esm/elementTypeAcceptingRef.js");
+/* harmony import */ var _mui_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @mui/core */ "./node_modules/@mui/core/composeClasses/composeClasses.js");
+/* harmony import */ var _mui_system__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @mui/system */ "./node_modules/@mui/system/esm/style.js");
+/* harmony import */ var _mui_system__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @mui/system */ "./node_modules/@mui/system/esm/colorManipulator.js");
+/* harmony import */ var _utils_capitalize__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/capitalize */ "./node_modules/@mui/material/utils/capitalize.js");
+/* harmony import */ var _styles_styled__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../styles/styled */ "./node_modules/@mui/material/styles/styled.js");
+/* harmony import */ var _styles_useThemeProps__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../styles/useThemeProps */ "./node_modules/@mui/material/styles/useThemeProps.js");
+/* harmony import */ var _utils_useIsFocusVisible__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../utils/useIsFocusVisible */ "./node_modules/@mui/material/utils/useIsFocusVisible.js");
+/* harmony import */ var _utils_useForkRef__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../utils/useForkRef */ "./node_modules/@mui/material/utils/useForkRef.js");
+/* harmony import */ var _Typography__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../Typography */ "./node_modules/@mui/material/Typography/Typography.js");
+/* harmony import */ var _linkClasses__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./linkClasses */ "./node_modules/@mui/material/Link/linkClasses.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+const _excluded = ["className", "color", "component", "onBlur", "onFocus", "TypographyClasses", "underline", "variant"];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const colorTransformations = {
+  primary: 'primary.main',
+  textPrimary: 'text.primary',
+  secondary: 'secondary.main',
+  textSecondary: 'text.secondary',
+  error: 'error.main'
+};
+
+const transformDeprecatedColors = color => {
+  return colorTransformations[color] || color;
+};
+
+const useUtilityClasses = ownerState => {
+  const {
+    classes,
+    component,
+    focusVisible,
+    underline
+  } = ownerState;
+  const slots = {
+    root: ['root', `underline${(0,_utils_capitalize__WEBPACK_IMPORTED_MODULE_6__["default"])(underline)}`, component === 'button' && 'button', focusVisible && 'focusVisible']
+  };
+  return (0,_mui_core__WEBPACK_IMPORTED_MODULE_7__["default"])(slots, _linkClasses__WEBPACK_IMPORTED_MODULE_8__.getLinkUtilityClass, classes);
+};
+
+const LinkRoot = (0,_styles_styled__WEBPACK_IMPORTED_MODULE_9__["default"])(_Typography__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  name: 'MuiLink',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const {
+      ownerState
+    } = props;
+    return [styles.root, styles[`underline${(0,_utils_capitalize__WEBPACK_IMPORTED_MODULE_6__["default"])(ownerState.underline)}`], ownerState.component === 'button' && styles.button];
+  }
+})(({
+  theme,
+  ownerState
+}) => {
+  const color = (0,_mui_system__WEBPACK_IMPORTED_MODULE_11__.getPath)(theme, `palette.${transformDeprecatedColors(ownerState.color)}`) || ownerState.color;
+  return (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({}, ownerState.underline === 'none' && {
+    textDecoration: 'none'
+  }, ownerState.underline === 'hover' && {
+    textDecoration: 'none',
+    '&:hover': {
+      textDecoration: 'underline'
+    }
+  }, ownerState.underline === 'always' && {
+    textDecoration: 'underline',
+    textDecorationColor: color !== 'inherit' ? (0,_mui_system__WEBPACK_IMPORTED_MODULE_12__.alpha)(color, 0.4) : undefined,
+    '&:hover': {
+      textDecorationColor: 'inherit'
+    }
+  }, ownerState.component === 'button' && {
+    position: 'relative',
+    WebkitTapHighlightColor: 'transparent',
+    backgroundColor: 'transparent',
+    // Reset default value
+    // We disable the focus ring for mouse, touch and keyboard users.
+    outline: 0,
+    border: 0,
+    margin: 0,
+    // Remove the margin in Safari
+    borderRadius: 0,
+    padding: 0,
+    // Remove the padding in Firefox
+    cursor: 'pointer',
+    userSelect: 'none',
+    verticalAlign: 'middle',
+    MozAppearance: 'none',
+    // Reset
+    WebkitAppearance: 'none',
+    // Reset
+    '&::-moz-focus-inner': {
+      borderStyle: 'none' // Remove Firefox dotted outline.
+
+    },
+    [`&.${_linkClasses__WEBPACK_IMPORTED_MODULE_8__["default"].focusVisible}`]: {
+      outline: 'auto'
+    }
+  });
+});
+const Link = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.forwardRef(function Link(inProps, ref) {
+  const props = (0,_styles_useThemeProps__WEBPACK_IMPORTED_MODULE_13__["default"])({
+    props: inProps,
+    name: 'MuiLink'
+  });
+
+  const {
+    className,
+    color = 'primary',
+    component = 'a',
+    onBlur,
+    onFocus,
+    TypographyClasses,
+    underline = 'always',
+    variant = 'inherit'
+  } = props,
+        other = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(props, _excluded);
+
+  const {
+    isFocusVisibleRef,
+    onBlur: handleBlurVisible,
+    onFocus: handleFocusVisible,
+    ref: focusVisibleRef
+  } = (0,_utils_useIsFocusVisible__WEBPACK_IMPORTED_MODULE_14__["default"])();
+  const [focusVisible, setFocusVisible] = react__WEBPACK_IMPORTED_MODULE_2__.useState(false);
+  const handlerRef = (0,_utils_useForkRef__WEBPACK_IMPORTED_MODULE_15__["default"])(ref, focusVisibleRef);
+
+  const handleBlur = event => {
+    handleBlurVisible(event);
+
+    if (isFocusVisibleRef.current === false) {
+      setFocusVisible(false);
+    }
+
+    if (onBlur) {
+      onBlur(event);
+    }
+  };
+
+  const handleFocus = event => {
+    handleFocusVisible(event);
+
+    if (isFocusVisibleRef.current === true) {
+      setFocusVisible(true);
+    }
+
+    if (onFocus) {
+      onFocus(event);
+    }
+  };
+
+  const ownerState = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({}, props, {
+    color,
+    component,
+    focusVisible,
+    underline,
+    variant
+  });
+
+  const classes = useUtilityClasses(ownerState);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(LinkRoot, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({
+    className: (0,clsx__WEBPACK_IMPORTED_MODULE_4__["default"])(classes.root, className),
+    classes: TypographyClasses,
+    color: color,
+    component: component,
+    onBlur: handleBlur,
+    onFocus: handleFocus,
+    ref: handlerRef,
+    ownerState: ownerState,
+    variant: variant
+  }, other));
+});
+ true ? Link.propTypes
+/* remove-proptypes */
+= {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+
+  /**
+   * The content of the component.
+   */
+  children: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().node),
+
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().object),
+
+  /**
+   * @ignore
+   */
+  className: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string),
+
+  /**
+   * The color of the link.
+   * @default 'primary'
+   */
+  color: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().any),
+
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: _mui_utils__WEBPACK_IMPORTED_MODULE_16__["default"],
+
+  /**
+   * @ignore
+   */
+  onBlur: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().func),
+
+  /**
+   * @ignore
+   */
+  onFocus: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().func),
+
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().object),
+
+  /**
+   * `classes` prop applied to the [`Typography`](/api/typography/) element.
+   */
+  TypographyClasses: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().object),
+
+  /**
+   * Controls when the link should have an underline.
+   * @default 'always'
+   */
+  underline: prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOf(['always', 'hover', 'none']),
+
+  /**
+   * Applies the theme typography styles.
+   * @default 'inherit'
+   */
+  variant: prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOf(['body1', 'body2', 'button', 'caption', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'inherit', 'overline', 'subtitle1', 'subtitle2']), (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string)])
+} : 0;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Link);
+
+/***/ }),
+
+/***/ "./node_modules/@mui/material/Link/linkClasses.js":
+/*!********************************************************!*\
+  !*** ./node_modules/@mui/material/Link/linkClasses.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getLinkUtilityClass": () => (/* binding */ getLinkUtilityClass),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _mui_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @mui/core */ "./node_modules/@mui/core/generateUtilityClass/generateUtilityClass.js");
+/* harmony import */ var _mui_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @mui/core */ "./node_modules/@mui/core/generateUtilityClasses/generateUtilityClasses.js");
+
+function getLinkUtilityClass(slot) {
+  return (0,_mui_core__WEBPACK_IMPORTED_MODULE_0__["default"])('MuiLink', slot);
+}
+const linkClasses = (0,_mui_core__WEBPACK_IMPORTED_MODULE_1__["default"])('MuiLink', ['root', 'underlineNone', 'underlineHover', 'underlineAlways', 'button', 'focusVisible']);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (linkClasses);
+
+/***/ }),
+
 /***/ "./node_modules/@mui/material/Paper/Paper.js":
 /*!***************************************************!*\
   !*** ./node_modules/@mui/material/Paper/Paper.js ***!
@@ -12913,13 +13206,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Grid/Grid.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Grid/Grid.js");
 /* harmony import */ var animate_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! animate.css */ "./node_modules/animate.css/animate.css");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store */ "./resources/js/store.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _components_DailyPhotos__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/DailyPhotos */ "./resources/js/components/DailyPhotos.js");
+/* harmony import */ var _components_ExplorePhotos__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/ExplorePhotos */ "./resources/js/components/ExplorePhotos.js");
 /* harmony import */ var _components_Navbar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Navbar */ "./resources/js/components/Navbar.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _components_Footer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Footer */ "./resources/js/components/Footer.js");
+/* harmony import */ var _sass_app_scss__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../sass/app.scss */ "./resources/sass/app.scss");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes React and other helpers. It's a great starting point while
@@ -12945,31 +13240,36 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
+
+
+
 function App() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-    className: "app",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_Navbar__WEBPACK_IMPORTED_MODULE_6__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_8__["default"], {
-      container: true,
-      spacing: 5,
-      justifyContent: "center",
-      style: {
-        marginTop: 10
-      },
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_8__["default"], {
-        item: true,
-        xs: 8,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_DailyPhotos__WEBPACK_IMPORTED_MODULE_5__["default"], {})
-      })
-    })]
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+      className: "main",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_components_Navbar__WEBPACK_IMPORTED_MODULE_6__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        container: true,
+        spacing: 5,
+        justifyContent: "center",
+        style: {
+          marginTop: 10
+        },
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], {
+          item: true,
+          xs: 8,
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_components_ExplorePhotos__WEBPACK_IMPORTED_MODULE_5__["default"], {})
+        })
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_components_Footer__WEBPACK_IMPORTED_MODULE_7__["default"], {})]
   });
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
 
 if (document.getElementById("root")) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_redux__WEBPACK_IMPORTED_MODULE_4__.Provider, {
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_redux__WEBPACK_IMPORTED_MODULE_4__.Provider, {
     store: _store__WEBPACK_IMPORTED_MODULE_3__["default"],
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(App, {})
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(App, {})
   }), document.getElementById("root"));
 }
 
@@ -13109,10 +13409,10 @@ function CategorySelector(_ref) {
 
 /***/ }),
 
-/***/ "./resources/js/components/DailyPhotoItem.js":
-/*!***************************************************!*\
-  !*** ./resources/js/components/DailyPhotoItem.js ***!
-  \***************************************************/
+/***/ "./resources/js/components/ExplorePhotoItem.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/ExplorePhotoItem.js ***!
+  \*****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -13121,29 +13421,79 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ DailyPhotoItem)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils */ "./resources/js/utils.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _mui_lab_MasonryItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @mui/lab/MasonryItem */ "./node_modules/@mui/lab/MasonryItem/MasonryItem.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
 function DailyPhotoItem(_ref) {
   var img = _ref.img;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-    src: img.url + "?v=" + img.id,
-    className: "animate__animated animate__fadeIn",
-    style: {
-      width: "100%",
-      animationDelay: (0,_utils__WEBPACK_IMPORTED_MODULE_1__.getRndNumber)(0.1, 0.4) + "s"
-    }
-  });
+
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__.useState(false),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      isLoaded = _React$useState2[0],
+      setIsLoaded = _React$useState2[1];
+
+  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0__.useState(""),
+      _React$useState4 = _slicedToArray(_React$useState3, 2),
+      url = _React$useState4[0],
+      setUrl = _React$useState4[1];
+
+  react__WEBPACK_IMPORTED_MODULE_0__.useEffect(function () {
+    var image = new Image();
+    var link = img.url + "?v=" + Math.random() * 1337; // for testing
+
+    setUrl(link);
+
+    image.onload = function () {
+      setTimeout(function () {
+        setIsLoaded(true);
+      }, 200);
+      console.log("loaded");
+    };
+
+    image.src = link;
+  }, []);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_lab_MasonryItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+      src: url,
+      style: {
+        opacity: 0
+      },
+      className: isLoaded ? "animate__animated animate__fadeIn" : ""
+    })
+  }, img.id); // return isLoaded ? (
+  //     <img
+  //         src={img.url}
+  //         className="animate__animated animate__fadeIn"
+  //         style={{
+  //             width: "100%",
+  //             animationDelay: getRndNumber(0.1, 0.4) + "s",
+  //         }}
+  //     ></img>
+  // ) : (
+  //     <div />
+  // );
 }
 
 /***/ }),
 
-/***/ "./resources/js/components/DailyPhotos.js":
-/*!************************************************!*\
-  !*** ./resources/js/components/DailyPhotos.js ***!
-  \************************************************/
+/***/ "./resources/js/components/ExplorePhotos.js":
+/*!**************************************************!*\
+  !*** ./resources/js/components/ExplorePhotos.js ***!
+  \**************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -13154,17 +13504,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Typography/Typography.js");
-/* harmony import */ var _mui_lab_Masonry__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @mui/lab/Masonry */ "./node_modules/@mui/lab/Masonry/Masonry.js");
-/* harmony import */ var _mui_lab_MasonryItem__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @mui/lab/MasonryItem */ "./node_modules/@mui/lab/MasonryItem/MasonryItem.js");
+/* harmony import */ var _mui_lab_Masonry__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @mui/lab/Masonry */ "./node_modules/@mui/lab/Masonry/Masonry.js");
 /* harmony import */ var animate_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! animate.css */ "./node_modules/animate.css/animate.css");
 /* harmony import */ var _axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../axios */ "./resources/js/axios.js");
 /* harmony import */ var _CategorySelector__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./CategorySelector */ "./resources/js/components/CategorySelector.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _mui_material_CircularProgress__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @mui/material/CircularProgress */ "./node_modules/@mui/material/CircularProgress/CircularProgress.js");
-/* harmony import */ var _DailyPhotoItem__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./DailyPhotoItem */ "./resources/js/components/DailyPhotoItem.js");
+/* harmony import */ var _mui_material_CircularProgress__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @mui/material/CircularProgress */ "./node_modules/@mui/material/CircularProgress/CircularProgress.js");
+/* harmony import */ var _ExplorePhotoItem__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./ExplorePhotoItem */ "./resources/js/components/ExplorePhotoItem.js");
 /* harmony import */ var _sass_app_scss__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../sass/app.scss */ "./resources/sass/app.scss");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_infinite_scroll_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-infinite-scroll-component */ "./node_modules/react-infinite-scroll-component/dist/index.es.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
@@ -13211,29 +13573,32 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var Layout = function Layout(_ref) {
   var isLoaded = _ref.isLoaded,
-      images = _ref.images;
-  return isLoaded == false ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+      images = _ref.images,
+      fetchImages = _ref.fetchImages;
+  return isLoaded == false ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
     style: {
       display: "flex",
       justifyContent: "center",
       marginTop: 60
     },
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_mui_material_CircularProgress__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_mui_material_CircularProgress__WEBPACK_IMPORTED_MODULE_10__["default"], {
       style: {
         color: "green"
       }
     })
-  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_mui_lab_Masonry__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_mui_lab_Masonry__WEBPACK_IMPORTED_MODULE_11__["default"], {
       columns: 6,
       spacing: 1,
+      style: {
+        overflow: "hidden"
+      },
       children: images.map(function (img, idx) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_mui_lab_MasonryItem__WEBPACK_IMPORTED_MODULE_11__["default"], {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_DailyPhotoItem__WEBPACK_IMPORTED_MODULE_6__["default"], {
-            img: img
-          })
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_ExplorePhotoItem__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          img: img
         }, img.id);
       })
     })
@@ -13274,7 +13639,7 @@ var DailyPhotos = /*#__PURE__*/function (_React$Component) {
 
           _this2.setState(function (prevState) {
             return _objectSpread(_objectSpread({}, prevState), {}, {
-              images: data,
+              images: [].concat(_toConsumableArray(prevState.images), _toConsumableArray(data)),
               isLoaded: true
             });
           });
@@ -13298,22 +13663,22 @@ var DailyPhotos = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_12__["default"], {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.Fragment, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_12__["default"], {
           variant: "p",
           className: "font-montserrat",
           fontSize: 20,
           children: "Explore"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
           style: {
             display: "flex",
             justifyContent: "center",
             marginBottom: 20
           },
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_CategorySelector__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_CategorySelector__WEBPACK_IMPORTED_MODULE_4__["default"], {
             isLoaded: this.state.isLoaded
           })
-        }), Layout(this.state)]
+        }), Layout(this.state, this.fetchImages)]
       });
     }
   }]);
@@ -13328,6 +13693,76 @@ var mapDispatchToProps = function mapDispatchToProps(state) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_5__.connect)(mapDispatchToProps)(DailyPhotos));
+
+/***/ }),
+
+/***/ "./resources/js/components/Footer.js":
+/*!*******************************************!*\
+  !*** ./resources/js/components/Footer.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Grid/Grid.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Typography/Typography.js");
+/* harmony import */ var _mui_material_Link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @mui/material/Link */ "./node_modules/@mui/material/Link/Link.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+var _templateObject, _templateObject2;
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+
+
+
+
+
+var Container = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    height: 200px;\n    position: relative;\n    background: black;\n    margin-top: auto;\n    padding: 25px 0px 25px 0px;\n    color: white;\n\n    box-shadow: 0px 10px 5px rgb(0 0 0 / 12%), 0px -10px 5px rgb(0 0 0 / 12%);\n"])));
+var Link = (0,styled_components__WEBPACK_IMPORTED_MODULE_1__["default"])(_mui_material_Link__WEBPACK_IMPORTED_MODULE_2__["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    text-decoration: none;\n    margin-top: 10px;\n\n    &:hover {\n        opacity: 0.8;\n    }\n"])));
+
+function Footer() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Container, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      item: true,
+      xs: 8,
+      style: {
+        display: "flex",
+        alignItems: "center",
+        marginLeft: "auto",
+        marginRight: "auto"
+      },
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          variant: "h6",
+          className: "font-montserrat",
+          children: "Site"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("ul", {
+          style: {
+            listStyle: "none"
+          },
+          className: "font-montserrat",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("li", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Link, {
+              href: "/",
+              children: "Home"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("li", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Link, {
+              href: "/",
+              children: "About"
+            })
+          })]
+        })]
+      })
+    })
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Footer);
 
 /***/ }),
 
@@ -13384,7 +13819,7 @@ function Navbar() {
             fontWeight: "bold"
           },
           className: "font-montserrat",
-          children: "Flickr"
+          children: "flickr"
         })
       })
     })
@@ -13479,25 +13914,6 @@ function store() {
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,redux__WEBPACK_IMPORTED_MODULE_1__.createStore)(store));
-
-/***/ }),
-
-/***/ "./resources/js/utils.js":
-/*!*******************************!*\
-  !*** ./resources/js/utils.js ***!
-  \*******************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getRndNumber": () => (/* binding */ getRndNumber)
-/* harmony export */ });
-function getRndNumber(min, max) {
-  return Math.random() * (max - min) + min;
-}
-
-
 
 /***/ }),
 
@@ -76741,6 +77157,469 @@ function checkDCE() {
 if (false) {} else {
   module.exports = __webpack_require__(/*! ./cjs/react-dom.development.js */ "./node_modules/react-dom/cjs/react-dom.development.js");
 }
+
+
+/***/ }),
+
+/***/ "./node_modules/react-infinite-scroll-component/dist/index.es.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/react-infinite-scroll-component/dist/index.es.js ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+this file except in compliance with the License. You may obtain a copy of the
+License at http://www.apache.org/licenses/LICENSE-2.0
+
+THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+MERCHANTABLITY OR NON-INFRINGEMENT.
+
+See the Apache Version 2.0 License for specific language governing permissions
+and limitations under the License.
+***************************************************************************** */
+/* global Reflect, Promise */
+
+var extendStatics = function(d, b) {
+    extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return extendStatics(d, b);
+};
+
+function __extends(d, b) {
+    extendStatics(d, b);
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+}
+
+var __assign = function() {
+    __assign = Object.assign || function __assign(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+
+/* eslint-disable no-undefined,no-param-reassign,no-shadow */
+
+/**
+ * Throttle execution of a function. Especially useful for rate limiting
+ * execution of handlers on events like resize and scroll.
+ *
+ * @param  {Number}    delay          A zero-or-greater delay in milliseconds. For event callbacks, values around 100 or 250 (or even higher) are most useful.
+ * @param  {Boolean}   [noTrailing]   Optional, defaults to false. If noTrailing is true, callback will only execute every `delay` milliseconds while the
+ *                                    throttled-function is being called. If noTrailing is false or unspecified, callback will be executed one final time
+ *                                    after the last throttled-function call. (After the throttled-function has not been called for `delay` milliseconds,
+ *                                    the internal counter is reset)
+ * @param  {Function}  callback       A function to be executed after delay milliseconds. The `this` context and all arguments are passed through, as-is,
+ *                                    to `callback` when the throttled-function is executed.
+ * @param  {Boolean}   [debounceMode] If `debounceMode` is true (at begin), schedule `clear` to execute after `delay` ms. If `debounceMode` is false (at end),
+ *                                    schedule `callback` to execute after `delay` ms.
+ *
+ * @return {Function}  A new, throttled, function.
+ */
+function throttle (delay, noTrailing, callback, debounceMode) {
+  /*
+   * After wrapper has stopped being called, this timeout ensures that
+   * `callback` is executed at the proper times in `throttle` and `end`
+   * debounce modes.
+   */
+  var timeoutID;
+  var cancelled = false; // Keep track of the last time `callback` was executed.
+
+  var lastExec = 0; // Function to clear existing timeout
+
+  function clearExistingTimeout() {
+    if (timeoutID) {
+      clearTimeout(timeoutID);
+    }
+  } // Function to cancel next exec
+
+
+  function cancel() {
+    clearExistingTimeout();
+    cancelled = true;
+  } // `noTrailing` defaults to falsy.
+
+
+  if (typeof noTrailing !== 'boolean') {
+    debounceMode = callback;
+    callback = noTrailing;
+    noTrailing = undefined;
+  }
+  /*
+   * The `wrapper` function encapsulates all of the throttling / debouncing
+   * functionality and when executed will limit the rate at which `callback`
+   * is executed.
+   */
+
+
+  function wrapper() {
+    var self = this;
+    var elapsed = Date.now() - lastExec;
+    var args = arguments;
+
+    if (cancelled) {
+      return;
+    } // Execute `callback` and update the `lastExec` timestamp.
+
+
+    function exec() {
+      lastExec = Date.now();
+      callback.apply(self, args);
+    }
+    /*
+     * If `debounceMode` is true (at begin) this is used to clear the flag
+     * to allow future `callback` executions.
+     */
+
+
+    function clear() {
+      timeoutID = undefined;
+    }
+
+    if (debounceMode && !timeoutID) {
+      /*
+       * Since `wrapper` is being called for the first time and
+       * `debounceMode` is true (at begin), execute `callback`.
+       */
+      exec();
+    }
+
+    clearExistingTimeout();
+
+    if (debounceMode === undefined && elapsed > delay) {
+      /*
+       * In throttle mode, if `delay` time has been exceeded, execute
+       * `callback`.
+       */
+      exec();
+    } else if (noTrailing !== true) {
+      /*
+       * In trailing throttle mode, since `delay` time has not been
+       * exceeded, schedule `callback` to execute `delay` ms after most
+       * recent execution.
+       *
+       * If `debounceMode` is true (at begin), schedule `clear` to execute
+       * after `delay` ms.
+       *
+       * If `debounceMode` is false (at end), schedule `callback` to
+       * execute after `delay` ms.
+       */
+      timeoutID = setTimeout(debounceMode ? clear : exec, debounceMode === undefined ? delay - elapsed : delay);
+    }
+  }
+
+  wrapper.cancel = cancel; // Return the wrapper function.
+
+  return wrapper;
+}
+
+var ThresholdUnits = {
+    Pixel: 'Pixel',
+    Percent: 'Percent',
+};
+var defaultThreshold = {
+    unit: ThresholdUnits.Percent,
+    value: 0.8,
+};
+function parseThreshold(scrollThreshold) {
+    if (typeof scrollThreshold === 'number') {
+        return {
+            unit: ThresholdUnits.Percent,
+            value: scrollThreshold * 100,
+        };
+    }
+    if (typeof scrollThreshold === 'string') {
+        if (scrollThreshold.match(/^(\d*(\.\d+)?)px$/)) {
+            return {
+                unit: ThresholdUnits.Pixel,
+                value: parseFloat(scrollThreshold),
+            };
+        }
+        if (scrollThreshold.match(/^(\d*(\.\d+)?)%$/)) {
+            return {
+                unit: ThresholdUnits.Percent,
+                value: parseFloat(scrollThreshold),
+            };
+        }
+        console.warn('scrollThreshold format is invalid. Valid formats: "120px", "50%"...');
+        return defaultThreshold;
+    }
+    console.warn('scrollThreshold should be string or number');
+    return defaultThreshold;
+}
+
+var InfiniteScroll = /** @class */ (function (_super) {
+    __extends(InfiniteScroll, _super);
+    function InfiniteScroll(props) {
+        var _this = _super.call(this, props) || this;
+        _this.lastScrollTop = 0;
+        _this.actionTriggered = false;
+        // variables to keep track of pull down behaviour
+        _this.startY = 0;
+        _this.currentY = 0;
+        _this.dragging = false;
+        // will be populated in componentDidMount
+        // based on the height of the pull down element
+        _this.maxPullDownDistance = 0;
+        _this.getScrollableTarget = function () {
+            if (_this.props.scrollableTarget instanceof HTMLElement)
+                return _this.props.scrollableTarget;
+            if (typeof _this.props.scrollableTarget === 'string') {
+                return document.getElementById(_this.props.scrollableTarget);
+            }
+            if (_this.props.scrollableTarget === null) {
+                console.warn("You are trying to pass scrollableTarget but it is null. This might\n        happen because the element may not have been added to DOM yet.\n        See https://github.com/ankeetmaini/react-infinite-scroll-component/issues/59 for more info.\n      ");
+            }
+            return null;
+        };
+        _this.onStart = function (evt) {
+            if (_this.lastScrollTop)
+                return;
+            _this.dragging = true;
+            if (evt instanceof MouseEvent) {
+                _this.startY = evt.pageY;
+            }
+            else if (evt instanceof TouchEvent) {
+                _this.startY = evt.touches[0].pageY;
+            }
+            _this.currentY = _this.startY;
+            if (_this._infScroll) {
+                _this._infScroll.style.willChange = 'transform';
+                _this._infScroll.style.transition = "transform 0.2s cubic-bezier(0,0,0.31,1)";
+            }
+        };
+        _this.onMove = function (evt) {
+            if (!_this.dragging)
+                return;
+            if (evt instanceof MouseEvent) {
+                _this.currentY = evt.pageY;
+            }
+            else if (evt instanceof TouchEvent) {
+                _this.currentY = evt.touches[0].pageY;
+            }
+            // user is scrolling down to up
+            if (_this.currentY < _this.startY)
+                return;
+            if (_this.currentY - _this.startY >=
+                Number(_this.props.pullDownToRefreshThreshold)) {
+                _this.setState({
+                    pullToRefreshThresholdBreached: true,
+                });
+            }
+            // so you can drag upto 1.5 times of the maxPullDownDistance
+            if (_this.currentY - _this.startY > _this.maxPullDownDistance * 1.5)
+                return;
+            if (_this._infScroll) {
+                _this._infScroll.style.overflow = 'visible';
+                _this._infScroll.style.transform = "translate3d(0px, " + (_this.currentY -
+                    _this.startY) + "px, 0px)";
+            }
+        };
+        _this.onEnd = function () {
+            _this.startY = 0;
+            _this.currentY = 0;
+            _this.dragging = false;
+            if (_this.state.pullToRefreshThresholdBreached) {
+                _this.props.refreshFunction && _this.props.refreshFunction();
+                _this.setState({
+                    pullToRefreshThresholdBreached: false,
+                });
+            }
+            requestAnimationFrame(function () {
+                // this._infScroll
+                if (_this._infScroll) {
+                    _this._infScroll.style.overflow = 'auto';
+                    _this._infScroll.style.transform = 'none';
+                    _this._infScroll.style.willChange = 'unset';
+                }
+            });
+        };
+        _this.onScrollListener = function (event) {
+            if (typeof _this.props.onScroll === 'function') {
+                // Execute this callback in next tick so that it does not affect the
+                // functionality of the library.
+                setTimeout(function () { return _this.props.onScroll && _this.props.onScroll(event); }, 0);
+            }
+            var target = _this.props.height || _this._scrollableNode
+                ? event.target
+                : document.documentElement.scrollTop
+                    ? document.documentElement
+                    : document.body;
+            // return immediately if the action has already been triggered,
+            // prevents multiple triggers.
+            if (_this.actionTriggered)
+                return;
+            var atBottom = _this.props.inverse
+                ? _this.isElementAtTop(target, _this.props.scrollThreshold)
+                : _this.isElementAtBottom(target, _this.props.scrollThreshold);
+            // call the `next` function in the props to trigger the next data fetch
+            if (atBottom && _this.props.hasMore) {
+                _this.actionTriggered = true;
+                _this.setState({ showLoader: true });
+                _this.props.next && _this.props.next();
+            }
+            _this.lastScrollTop = target.scrollTop;
+        };
+        _this.state = {
+            showLoader: false,
+            pullToRefreshThresholdBreached: false,
+            prevDataLength: props.dataLength,
+        };
+        _this.throttledOnScrollListener = throttle(150, _this.onScrollListener).bind(_this);
+        _this.onStart = _this.onStart.bind(_this);
+        _this.onMove = _this.onMove.bind(_this);
+        _this.onEnd = _this.onEnd.bind(_this);
+        return _this;
+    }
+    InfiniteScroll.prototype.componentDidMount = function () {
+        if (typeof this.props.dataLength === 'undefined') {
+            throw new Error("mandatory prop \"dataLength\" is missing. The prop is needed" +
+                " when loading more content. Check README.md for usage");
+        }
+        this._scrollableNode = this.getScrollableTarget();
+        this.el = this.props.height
+            ? this._infScroll
+            : this._scrollableNode || window;
+        if (this.el) {
+            this.el.addEventListener('scroll', this
+                .throttledOnScrollListener);
+        }
+        if (typeof this.props.initialScrollY === 'number' &&
+            this.el &&
+            this.el instanceof HTMLElement &&
+            this.el.scrollHeight > this.props.initialScrollY) {
+            this.el.scrollTo(0, this.props.initialScrollY);
+        }
+        if (this.props.pullDownToRefresh && this.el) {
+            this.el.addEventListener('touchstart', this.onStart);
+            this.el.addEventListener('touchmove', this.onMove);
+            this.el.addEventListener('touchend', this.onEnd);
+            this.el.addEventListener('mousedown', this.onStart);
+            this.el.addEventListener('mousemove', this.onMove);
+            this.el.addEventListener('mouseup', this.onEnd);
+            // get BCR of pullDown element to position it above
+            this.maxPullDownDistance =
+                (this._pullDown &&
+                    this._pullDown.firstChild &&
+                    this._pullDown.firstChild.getBoundingClientRect()
+                        .height) ||
+                    0;
+            this.forceUpdate();
+            if (typeof this.props.refreshFunction !== 'function') {
+                throw new Error("Mandatory prop \"refreshFunction\" missing.\n          Pull Down To Refresh functionality will not work\n          as expected. Check README.md for usage'");
+            }
+        }
+    };
+    InfiniteScroll.prototype.componentWillUnmount = function () {
+        if (this.el) {
+            this.el.removeEventListener('scroll', this
+                .throttledOnScrollListener);
+            if (this.props.pullDownToRefresh) {
+                this.el.removeEventListener('touchstart', this.onStart);
+                this.el.removeEventListener('touchmove', this.onMove);
+                this.el.removeEventListener('touchend', this.onEnd);
+                this.el.removeEventListener('mousedown', this.onStart);
+                this.el.removeEventListener('mousemove', this.onMove);
+                this.el.removeEventListener('mouseup', this.onEnd);
+            }
+        }
+    };
+    InfiniteScroll.prototype.componentDidUpdate = function (prevProps) {
+        // do nothing when dataLength is unchanged
+        if (this.props.dataLength === prevProps.dataLength)
+            return;
+        this.actionTriggered = false;
+        // update state when new data was sent in
+        this.setState({
+            showLoader: false,
+        });
+    };
+    InfiniteScroll.getDerivedStateFromProps = function (nextProps, prevState) {
+        var dataLengthChanged = nextProps.dataLength !== prevState.prevDataLength;
+        // reset when data changes
+        if (dataLengthChanged) {
+            return __assign(__assign({}, prevState), { prevDataLength: nextProps.dataLength });
+        }
+        return null;
+    };
+    InfiniteScroll.prototype.isElementAtTop = function (target, scrollThreshold) {
+        if (scrollThreshold === void 0) { scrollThreshold = 0.8; }
+        var clientHeight = target === document.body || target === document.documentElement
+            ? window.screen.availHeight
+            : target.clientHeight;
+        var threshold = parseThreshold(scrollThreshold);
+        if (threshold.unit === ThresholdUnits.Pixel) {
+            return (target.scrollTop <=
+                threshold.value + clientHeight - target.scrollHeight + 1);
+        }
+        return (target.scrollTop <=
+            threshold.value / 100 + clientHeight - target.scrollHeight + 1);
+    };
+    InfiniteScroll.prototype.isElementAtBottom = function (target, scrollThreshold) {
+        if (scrollThreshold === void 0) { scrollThreshold = 0.8; }
+        var clientHeight = target === document.body || target === document.documentElement
+            ? window.screen.availHeight
+            : target.clientHeight;
+        var threshold = parseThreshold(scrollThreshold);
+        if (threshold.unit === ThresholdUnits.Pixel) {
+            return (target.scrollTop + clientHeight >= target.scrollHeight - threshold.value);
+        }
+        return (target.scrollTop + clientHeight >=
+            (threshold.value / 100) * target.scrollHeight);
+    };
+    InfiniteScroll.prototype.render = function () {
+        var _this = this;
+        var style = __assign({ height: this.props.height || 'auto', overflow: 'auto', WebkitOverflowScrolling: 'touch' }, this.props.style);
+        var hasChildren = this.props.hasChildren ||
+            !!(this.props.children &&
+                this.props.children instanceof Array &&
+                this.props.children.length);
+        // because heighted infiniteScroll visualy breaks
+        // on drag down as overflow becomes visible
+        var outerDivStyle = this.props.pullDownToRefresh && this.props.height
+            ? { overflow: 'auto' }
+            : {};
+        return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { style: outerDivStyle, className: "infinite-scroll-component__outerdiv" },
+            react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "infinite-scroll-component " + (this.props.className || ''), ref: function (infScroll) { return (_this._infScroll = infScroll); }, style: style },
+                this.props.pullDownToRefresh && (react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { style: { position: 'relative' }, ref: function (pullDown) { return (_this._pullDown = pullDown); } },
+                    react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { style: {
+                            position: 'absolute',
+                            left: 0,
+                            right: 0,
+                            top: -1 * this.maxPullDownDistance,
+                        } }, this.state.pullToRefreshThresholdBreached
+                        ? this.props.releaseToRefreshContent
+                        : this.props.pullDownToRefreshContent))),
+                this.props.children,
+                !this.state.showLoader &&
+                    !hasChildren &&
+                    this.props.hasMore &&
+                    this.props.loader,
+                this.state.showLoader && this.props.hasMore && this.props.loader,
+                !this.props.hasMore && this.props.endMessage)));
+    };
+    return InfiniteScroll;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component));
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (InfiniteScroll);
+//# sourceMappingURL=index.es.js.map
 
 
 /***/ }),
