@@ -1,26 +1,38 @@
 import React from "react";
 import MasonryItem from "@mui/lab/MasonryItem";
 
-export default function DailyPhotoItem({ img }) {
+export default function DailyPhotoItem({ img, onLoaded, onUnLoaded }) {
     const [isLoaded, setIsLoaded] = React.useState(false);
     const [url, setUrl] = React.useState("");
 
     React.useEffect(() => {
-        let image = new Image();
-
-        const link = img.url + "?v=" + Math.random() * 1337; // for testing
+        const link = img.url + "?v=" + Math.random() * 1337,
+            image = new Image();
 
         setUrl(link);
 
         image.onload = () => {
-            setTimeout(() => {
-                setIsLoaded(true);
-            }, 200);
-            console.log("loaded");
+            setIsLoaded(true);
+
+            onLoaded(img);
         };
 
         image.src = link;
+
+        return () => {
+            onUnLoaded(img);
+        };
     }, []);
+
+    // return (
+    //     <MasonryItem key={img.id}>
+    //         <img
+    //             src={url}
+    //             style={{ opacity: 0 }}
+    //             className={isLoaded ? "animate__animated animate__fadeIn" : ""}
+    //         />
+    //     </MasonryItem>
+    // );
 
     return (
         <MasonryItem key={img.id}>
@@ -31,18 +43,4 @@ export default function DailyPhotoItem({ img }) {
             />
         </MasonryItem>
     );
-
-    // return isLoaded ? (
-    //     <img
-    //         src={img.url}
-    //         className="animate__animated animate__fadeIn"
-    //         style={{
-    //             width: "100%",
-
-    //             animationDelay: getRndNumber(0.1, 0.4) + "s",
-    //         }}
-    //     ></img>
-    // ) : (
-    //     <div />
-    // );
 }

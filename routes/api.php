@@ -30,7 +30,7 @@ Route::middleware('auth:sanctum')->get("/refresh", [AuthController::class, 'refr
 Route::get('explore', function (Request $request) {
     sleep(0.1);
 
-    $photos = Photo::with("tags")->get()->random(5);
+    $photos = Photo::with("tags")->get()->random(20);
 
     return response()->json($photos);
 });

@@ -10,14 +10,8 @@
 </head>
 
 <body>
-
-    <!-- React root DOM --> 
-    <div id="root">
-    </div>
-
-    <!-- React JS -->
+    <div id="root"></div>
+    
     <script src="{{ mix('js/app.js') }}" defer></script>
-
-
 </body>
 </html>

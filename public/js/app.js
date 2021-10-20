@@ -13522,7 +13522,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function DailyPhotoItem(_ref) {
-  var img = _ref.img;
+  var img = _ref.img,
+      onLoaded = _ref.onLoaded,
+      onUnLoaded = _ref.onUnLoaded;
 
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__.useState(false),
       _React$useState2 = _slicedToArray(_React$useState, 2),
@@ -13535,20 +13537,29 @@ function DailyPhotoItem(_ref) {
       setUrl = _React$useState4[1];
 
   react__WEBPACK_IMPORTED_MODULE_0__.useEffect(function () {
-    var image = new Image();
-    var link = img.url + "?v=" + Math.random() * 1337; // for testing
-
+    var link = img.url + "?v=" + Math.random() * 1337,
+        image = new Image();
     setUrl(link);
 
     image.onload = function () {
-      setTimeout(function () {
-        setIsLoaded(true);
-      }, 200);
-      console.log("loaded");
+      setIsLoaded(true);
+      onLoaded(img);
     };
 
     image.src = link;
-  }, []);
+    return function () {
+      onUnLoaded(img);
+    };
+  }, []); // return (
+  //     <MasonryItem key={img.id}>
+  //         <img
+  //             src={url}
+  //             style={{ opacity: 0 }}
+  //             className={isLoaded ? "animate__animated animate__fadeIn" : ""}
+  //         />
+  //     </MasonryItem>
+  // );
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_lab_MasonryItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
       src: url,
@@ -13557,18 +13568,7 @@ function DailyPhotoItem(_ref) {
       },
       className: isLoaded ? "animate__animated animate__fadeIn" : ""
     })
-  }, img.id); // return isLoaded ? (
-  //     <img
-  //         src={img.url}
-  //         className="animate__animated animate__fadeIn"
-  //         style={{
-  //             width: "100%",
-  //             animationDelay: getRndNumber(0.1, 0.4) + "s",
-  //         }}
-  //     ></img>
-  // ) : (
-  //     <div />
-  // );
+  }, img.id);
 }
 
 /***/ }),
@@ -13601,8 +13601,6 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -13623,6 +13621,8 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -13641,30 +13641,34 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 var Layout = function Layout(_ref) {
   var isLoaded = _ref.isLoaded,
       images = _ref.images,
-      fetchImages = _ref.fetchImages;
-  return isLoaded == false ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+      fetchImages = _ref.fetchImages,
+      onLoaded = _ref.onLoaded,
+      onUnLoaded = _ref.onUnLoaded,
+      loadedImagesCount = _ref.loadedImagesCount;
+  return !isLoaded ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
     style: {
       display: "flex",
       justifyContent: "center",
-      marginTop: 60
+      marginTop: 60,
+      marginBottom: 60
     },
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material_CircularProgress__WEBPACK_IMPORTED_MODULE_8__["default"], {
       style: {
         color: "green"
       }
     })
-  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_lab_Masonry__WEBPACK_IMPORTED_MODULE_9__["default"], {
-      columns: 6,
-      spacing: 1,
-      style: {
-        overflow: "hidden"
-      },
-      children: images.map(function (img, idx) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_ExplorePhotoItem__WEBPACK_IMPORTED_MODULE_5__["default"], {
-          img: img
-        }, img.id);
-      })
+  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_lab_Masonry__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    columns: 6,
+    spacing: 1,
+    style: {
+      overflow: "hidden"
+    },
+    children: images.map(function (img, idx) {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_ExplorePhotoItem__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        img: img,
+        onLoaded: onLoaded,
+        onUnLoaded: onUnLoaded
+      }, img.id);
     })
   });
 };
@@ -13680,9 +13684,27 @@ var DailyPhotos = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, DailyPhotos);
 
     _this = _super.call(this, props);
+
+    _defineProperty(_assertThisInitialized(_this), "onLoaded", function () {
+      _this.setState(function (prevState) {
+        return _objectSpread(_objectSpread({}, prevState), {}, {
+          loadedImagesCount: prevState.loadedImagesCount + 1
+        });
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "onUnLoaded", function () {
+      _this.setState(function (prevState) {
+        return _objectSpread(_objectSpread({}, prevState), {}, {
+          loadedImagesCount: prevState.loadedImagesCount - 1
+        });
+      });
+    });
+
     _this.state = {
       images: [],
-      isLoaded: false
+      isLoaded: false,
+      loadedImagesCount: 0
     };
     return _this;
   }
@@ -13695,7 +13717,8 @@ var DailyPhotos = /*#__PURE__*/function (_React$Component) {
       this.setState(function (prevState) {
         return _objectSpread(_objectSpread({}, prevState), {}, {
           isLoaded: false,
-          images: []
+          images: [],
+          loadedImagesCount: 0
         });
       }, function () {
         _axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("/api/explore" + (_this2.props.selectedCategory === null ? "" : "/" + _this2.props.selectedCategory)).then(function (_ref2) {
@@ -13742,7 +13765,11 @@ var DailyPhotos = /*#__PURE__*/function (_React$Component) {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_CategorySelector__WEBPACK_IMPORTED_MODULE_3__["default"], {
             isLoaded: this.state.isLoaded
           })
-        }), Layout(this.state, this.fetchImages)]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(Layout, _objectSpread(_objectSpread({}, this.state), {}, {
+          fetchImages: this.fetchImages,
+          onLoaded: this.onLoaded,
+          onUnLoaded: this.onUnLoaded
+        }))]
       });
     }
   }]);
