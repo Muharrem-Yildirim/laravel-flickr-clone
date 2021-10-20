@@ -15,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/{any}', 'welcome')->where('any', '.*');
 
+Route::get("/login", function () {
+    return view('index');
+})->name('login');
+
+
+
 
 // Route::get('/', function () {
 //     return view('welcome');

@@ -9,6 +9,23 @@ import IconButton from "@mui/material/IconButton";
 // import MenuIcon from "@material-ui/icons/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Grid } from "@mui/material";
+import { Link } from "react-router-dom";
+
+const Logo = () => (
+    <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+        <Typography
+            variant="h6"
+            component="div"
+            style={{
+                fontWeight: "bold",
+                marginRight: 25,
+            }}
+            className="font-montserrat"
+        >
+            flickr
+        </Typography>
+    </Link>
+);
 
 export default function Navbar() {
     return (
@@ -33,18 +50,11 @@ export default function Navbar() {
                     >
                         <MenuIcon />
                     </IconButton> */}
-                    <Typography
-                        variant="h6"
-                        component="div"
-                        sx={{ flexGrow: 1 }}
-                        style={{
-                            fontWeight: "bold",
-                        }}
-                        className="font-montserrat"
-                    >
-                        flickr
-                    </Typography>
-                    {/* <Button color="inherit">Login</Button> */}
+                    <Logo />
+                    {/* <Button color="inherit">Explore</Button> */}
+
+                    <Box sx={{ flexGrow: 1 }} />
+                    <Button color="inherit">Login</Button>
                 </Grid>
             </Toolbar>
         </AppBar>

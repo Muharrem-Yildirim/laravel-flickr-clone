@@ -5,7 +5,7 @@ import MuiLink from "@mui/material/Link";
 const Container = styled.div`
     height: 200px;
     position: relative;
-    background: black;
+    background: #212121;
     margin-top: auto;
     padding: 25px 0px 25px 0px;
     color: white;
@@ -36,7 +36,11 @@ function Footer() {
                 }}
             >
                 <div>
-                    <Typography variant="h6" className="font-montserrat">
+                    <Typography
+                        variant="h6"
+                        className="font-montserrat"
+                        style={{ fontWeight: "bold" }}
+                    >
                         Site
                     </Typography>
                     <ul

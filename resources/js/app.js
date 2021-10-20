@@ -17,45 +17,23 @@ require("./bootstrap");
 import React from "react";
 import ReactDOM from "react-dom";
 
-import { Grid } from "@mui/material";
-
 import "animate.css";
 import store from "./store";
 
 import { Provider } from "react-redux";
-import ExplorePhotos from "./components/ExplorePhotos";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import "../sass/app.scss";
+
+import Router from "./components/Router";
 
 function App() {
     return (
-        <>
-            <div className="main">
-                <Navbar />
-                <Grid
-                    container
-                    spacing={5}
-                    justifyContent={"center"}
-                    style={{ marginTop: 10 }}
-                >
-                    <Grid item xs={8}>
-                        <ExplorePhotos />
-                    </Grid>
-                </Grid>
-            </div>
-            <Footer />
-        </>
+        <Provider store={store}>
+            <Router />
+        </Provider>
     );
 }
 
 export default App;
 
 if (document.getElementById("root")) {
-    ReactDOM.render(
-        <Provider store={store}>
-            <App />
-        </Provider>,
-        document.getElementById("root")
-    );
+    ReactDOM.render(<App />, document.getElementById("root"));
 }

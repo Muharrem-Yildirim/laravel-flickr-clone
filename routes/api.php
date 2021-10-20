@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Photo;
+use \App\Http\Controllers\AuthController;
 
 
 /*
@@ -16,9 +17,14 @@ use App\Models\Photo;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::post("/token", [AuthController::class, "token"]);
+Route::post("/register", [AuthController::class, "register"]);
+Route::middleware('auth:sanctum')->get("/user", [AuthController::class, 'profile']);
+Route::middleware('auth:sanctum')->get("/refresh", [AuthController::class, 'refresh']);
 
 Route::get('daily-photos', function (Request $request) {
     sleep(0.1);
