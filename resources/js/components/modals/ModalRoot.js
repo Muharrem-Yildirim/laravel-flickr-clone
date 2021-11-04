@@ -9,7 +9,9 @@ export const MODALS = {
 };
 
 export default function ModalRoot() {
-    const activeModals = useSelector((state) => state.activeModals);
+    const activeModals = useSelector(
+        (state) => state.modalReducer.activeModals
+    );
 
     if (activeModals.length === 0) return <></>;
 
