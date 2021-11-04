@@ -10,6 +10,9 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Grid } from "@mui/material";
 import { Link } from "react-router-dom";
+import UploadIcon from "@mui/icons-material/Upload";
+import { useDispatch } from "react-redux";
+import { openModal } from "../actions/modalActions";
 
 const Logo = () => (
     <Link to="/" style={{ textDecoration: "none", color: "white" }}>
@@ -28,6 +31,12 @@ const Logo = () => (
 );
 
 export default function Navbar() {
+    const dispatch = useDispatch();
+
+    const onClickUpload = () => {
+        dispatch(openModal("UPLOAD_PHOTO"));
+    };
+
     return (
         <AppBar position="static" color="success">
             <Toolbar>
@@ -54,7 +63,17 @@ export default function Navbar() {
                     {/* <Button color="inherit">Explore</Button> */}
 
                     <Box sx={{ flexGrow: 1 }} />
-                    <Button color="inherit">Login</Button>
+                    <IconButton
+                        size="large"
+                        edge="start"
+                        color="inherit"
+                        aria-label="menu"
+                        sx={{ mr: 2 }}
+                        onClick={onClickUpload}
+                    >
+                        <UploadIcon />
+                    </IconButton>
+                    {/* <Button color="inherit">Login</Button> */}
                 </Grid>
             </Toolbar>
         </AppBar>

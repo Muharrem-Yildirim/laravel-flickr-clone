@@ -23,10 +23,12 @@ import store from "./store";
 import { Provider } from "react-redux";
 
 import Router from "./components/Router";
+import ModalRoot from "./components/modals/ModalRoot";
 
 function App() {
     return (
         <Provider store={store}>
+            <ModalRoot />
             <Router />
         </Provider>
     );

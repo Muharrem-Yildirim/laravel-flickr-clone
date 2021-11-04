@@ -2,6 +2,7 @@ import * as React from "react";
 import MuiButton from "@mui/material/Button";
 import styled from "styled-components";
 import useCategoryHook from "../hooks/useCategoryHook";
+import RefreshIcon from "@mui/icons-material/Refresh";
 
 const Categories = ["All", "Environment", "City", "Animal"];
 
@@ -27,35 +28,48 @@ const Button = styled(MuiButton)`
     }
 `;
 
-export default function CategorySelector({ isLoaded }) {
+export default function CategorySelector({ isLoaded, fetchImages }) {
     const [selectedCategory, setSelectedCategory] = useCategoryHook();
 
     const onClickCategory = (e, categoryId) => {
         setSelectedCategory(categoryId === 0 ? null : Categories[categoryId]);
     };
 
-    return Categories.map((category, idx) => {
-        return (
+    return (
+        <>
+            {Categories.map((category, idx) => {
+                return (
+                    <Button
+                        variant={
+                            (
+                                Categories[idx] === selectedCategory
+                                    ? true
+                                    : selectedCategory === null && idx === 0
+                                    ? true
+                                    : Categories[idx] === selectedCategory
+                            )
+                                ? "contained"
+                                : "outlined"
+                        }
+                        onClick={(e) => onClickCategory(e, idx)}
+                        key={idx}
+                        color="success"
+                        size="small"
+                        disabled={!isLoaded}
+                    >
+                        {(idx === 0 ? "" : "#") + category}
+                    </Button>
+                );
+            })}
             <Button
-                variant={
-                    (
-                        Categories[idx] === selectedCategory
-                            ? true
-                            : selectedCategory === null && idx === 0
-                            ? true
-                            : Categories[idx] === selectedCategory
-                    )
-                        ? "contained"
-                        : "outlined"
-                }
-                onClick={(e) => onClickCategory(e, idx)}
-                key={idx}
+                variant={"outlined"}
+                onClick={(e) => fetchImages()}
                 color="success"
                 size="small"
                 disabled={!isLoaded}
             >
-                {(idx === 0 ? "" : "#") + category}
+                <RefreshIcon fontSize="small" />
             </Button>
-        );
-    });
+        </>
+    );
 }

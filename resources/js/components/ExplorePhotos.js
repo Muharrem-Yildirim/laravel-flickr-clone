@@ -54,7 +54,7 @@ class DailyPhotos extends React.Component {
         };
     }
 
-    fetchImages() {
+    fetchImages = () => {
         this.setState(
             (prevState) => {
                 return {
@@ -83,7 +83,7 @@ class DailyPhotos extends React.Component {
                     });
             }
         );
-    }
+    };
 
     componentDidMount() {
         this.fetchImages();
@@ -133,7 +133,10 @@ class DailyPhotos extends React.Component {
                         marginBottom: 20,
                     }}
                 >
-                    <CategorySelector isLoaded={this.state.isLoaded} />
+                    <CategorySelector
+                        isLoaded={this.state.isLoaded}
+                        fetchImages={this.fetchImages}
+                    />
                 </div>
                 <Layout
                     {...this.state}
