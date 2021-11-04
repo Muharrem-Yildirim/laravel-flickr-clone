@@ -1,9 +1,8 @@
-export default function exploreReducer(
-    state = {
-        selectedCategory: 0,
-    },
-    action
-) {
+const intialState = {
+    selectedCategory: 0,
+};
+
+export default function exploreReducer(state = intialState, action) {
     switch (action.type) {
         case "SELECTED_CATEGORY":
             return {

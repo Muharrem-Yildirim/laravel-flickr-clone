@@ -26624,10 +26624,11 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+var intialState = {
+  selectedCategory: 0
+};
 function exploreReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-    selectedCategory: 0
-  };
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : intialState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
@@ -26672,10 +26673,11 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+var intialState = {
+  activeModals: []
+};
 function modalReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-    activeModals: []
-  };
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : intialState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {

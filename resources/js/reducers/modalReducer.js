@@ -1,9 +1,8 @@
-export default function modalReducer(
-    state = {
-        activeModals: [],
-    },
-    action
-) {
+const intialState = {
+    activeModals: [],
+};
+
+export default function modalReducer(state = intialState, action) {
     switch (action.type) {
         case "OPEN_MODAL": {
             const modalKey = action.payload.modalKey;
