@@ -26208,7 +26208,7 @@ var DailyPhotos = /*#__PURE__*/function (_React$Component) {
 
 var mapDispatchToProps = function mapDispatchToProps(state) {
   return {
-    selectedCategory: state.selectedCategory
+    selectedCategory: state.exploreReducer.selectedCategory
   };
 };
 
@@ -26588,7 +26588,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function useCategoryHook(friendID) {
+function useCategoryHook() {
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__.useState(null),
       _React$useState2 = _slicedToArray(_React$useState, 2),
       selectedCategory = _React$useState2[0],

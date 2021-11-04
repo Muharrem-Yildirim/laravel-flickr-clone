@@ -150,7 +150,7 @@ class DailyPhotos extends React.Component {
 }
 
 const mapDispatchToProps = (state) => {
-    return { selectedCategory: state.selectedCategory };
+    return { selectedCategory: state.exploreReducer.selectedCategory };
 };
 
 export default connect(mapDispatchToProps)(DailyPhotos);
