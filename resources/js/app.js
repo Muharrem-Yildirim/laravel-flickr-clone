@@ -28,8 +28,8 @@ import ModalRoot from "./components/modals/ModalRoot";
 function App() {
     return (
         <Provider store={store}>
-            <ModalRoot />
             <Router />
+            <ModalRoot />
         </Provider>
     );
 }

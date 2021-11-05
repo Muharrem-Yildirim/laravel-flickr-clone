@@ -1,26 +1,24 @@
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import { Grid } from "@mui/material";
 import { Link } from "react-router-dom";
-import UploadIcon from "@mui/icons-material/Upload";
 import { useDispatch } from "react-redux";
 import { openModal } from "../actions/modalActions";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import TextField from "@mui/material/TextField";
 import { outlinedInputClasses } from "@mui/material/OutlinedInput";
 import { inputLabelClasses } from "@mui/material/InputLabel";
+
+import {
+    InputAdornment,
+    TextField,
+    Typography,
+    IconButton,
+    Toolbar,
+    Grid,
+    Box,
+    AppBar,
+} from "@mui/material";
+
 import SearchIcon from "@mui/icons-material/Search";
-import InputLabel from "@mui/material/InputLabel";
-import InputAdornment from "@mui/material/InputAdornment";
-import FormHelperText from "@mui/material/FormHelperText";
-import FormControl from "@mui/material/FormControl";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import UploadIcon from "@mui/icons-material/Upload";
+
 import styled from "styled-components";
 
 const WhiteBorderTextField = styled(TextField)({
