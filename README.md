@@ -1,7 +1,4 @@
 # laravel-flickr-clone
-<p>
-<b>CURRENTLY WORKING ON THIS PROJECT</b>
-</p>
 
 <table>
 <tr>
