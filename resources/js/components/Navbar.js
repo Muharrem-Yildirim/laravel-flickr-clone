@@ -94,7 +94,7 @@ export default function Navbar() {
                     <Logo />
 
                     <Box sx={{ flexGrow: 1 }} />
-
+                    {/* 
                     <WhiteBorderTextField
                         value={""}
                         size="small"
@@ -111,7 +111,7 @@ export default function Navbar() {
                             ),
                         }}
                         label="Search"
-                    />
+                    /> */}
 
                     <Box sx={{ flexGrow: 1 }} />
                     <IconButton

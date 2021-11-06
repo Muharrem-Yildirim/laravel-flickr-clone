@@ -15,9 +15,7 @@ class Photo extends Model
         'url',
     ];
 
-    protected $casts = [
-        'category_id' => 'integer',
-    ];
+    protected $casts = [];
 
     public function tags()
     {

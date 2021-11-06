@@ -24,13 +24,16 @@ import { Provider } from "react-redux";
 
 import Router from "./components/Router";
 import ModalRoot from "./components/modals/ModalRoot";
+import { SnackbarProvider } from "notistack";
 
 function App() {
     return (
-        <Provider store={store}>
-            <Router />
-            <ModalRoot />
-        </Provider>
+        <SnackbarProvider maxSnack={3}>
+            <Provider store={store}>
+                <Router />
+                <ModalRoot />
+            </Provider>
+        </SnackbarProvider>
     );
 }
 

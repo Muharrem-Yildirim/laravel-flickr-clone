@@ -3,11 +3,13 @@ import { DropzoneDialog } from "material-ui-dropzone";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { closeModal } from "../../actions/modalActions";
+import { useSnackbar } from "notistack";
 
 export default function UploadPhotoModal() {
     const dispatch = useDispatch();
+    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
-    const onClickClose = () => {
+    const close = () => {
         dispatch(closeModal("UPLOAD_PHOTO"));
     };
 
@@ -15,19 +17,38 @@ export default function UploadPhotoModal() {
         <DropzoneDialog
             open={"true"}
             maxFileSize={5000000}
-            filesLimit={3}
+            filesLimit={1}
             acceptedFiles={["image/*"]}
-            onClose={() => onClickClose()}
+            onClose={() => close()}
             onSave={(files) => {
-                console.log("Files:", files);
-                setOpen(false);
+                let formData = new FormData();
+                files.map((fileMap) => {
+                    formData.append("images[]", fileMap);
+                });
+
+                axios
+                    .post("/api/photo", formData, {
+                        headers: {
+                            "Content-Type": "multipart/form-data",
+                        },
+                    })
+                    .then((data) => {
+                        enqueueSnackbar("Photo successfully uploaded.", {
+                            variant: "success",
+                        });
+                        close();
+                    })
+                    .catch(function (err) {
+                        enqueueSnackbar(
+                            err.response?.data?.error ||
+                                "Unknown error occured.",
+                            {
+                                variant: "error",
+                            }
+                        );
+                    });
             }}
             showPreviews={true}
         ></DropzoneDialog>
     );
-    // return (
-    //     <div>
-    //         UploadPhotoModal <button onClick={onClickClose}>close</button>
-    //     </div>
-    // );
 }

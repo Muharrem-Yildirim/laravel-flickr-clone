@@ -5,13 +5,13 @@ import { closeModal } from "../../actions/modalActions";
 export default function UploadPhotoModal() {
     const dispatch = useDispatch();
 
-    const onClickClose = () => {
+    const close = () => {
         dispatch(closeModal("TEST_MODAL"));
     };
 
     return (
         <div>
-            TestModal <button onClick={onClickClose}>close</button>
+            TestModal <button onClick={close}>close</button>
         </div>
     );
 }
