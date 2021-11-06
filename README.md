@@ -1,4 +1,5 @@
 # laravel-flickr-clone
+<p>Made with React.js, Laravel and Material UI</p>
 
 <table>
 <tr>
