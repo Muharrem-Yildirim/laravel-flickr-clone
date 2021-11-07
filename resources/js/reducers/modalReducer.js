@@ -1,5 +1,5 @@
 const intialState = {
-    activeModals: ["LOGIN"],
+    activeModals: [],
 };
 
 export default function modalReducer(state = intialState, action) {

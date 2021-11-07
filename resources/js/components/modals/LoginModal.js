@@ -1,21 +1,18 @@
 import {
     Dialog,
-    DialogActions,
     DialogContent,
     DialogTitle,
     TextField,
     Button,
     FormGroup,
     Box,
-    IconButton,
 } from "@mui/material";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { closeModal } from "../../actions/modalActions";
+import CloseButton from "./CloseButton";
 
-import CloseIcon from "@mui/icons-material/Close";
-
-export default function RegisterModal() {
+export default function LoginModal() {
     const dispatch = useDispatch();
 
     const close = () => {
@@ -45,14 +42,7 @@ export default function RegisterModal() {
     return (
         <Dialog open={true} fullWidth maxWidth="xs" onClose={close}>
             <DialogTitle>
-                Login{" "}
-                <IconButton
-                    aria-label="close"
-                    className="btn-dialog-close"
-                    onClick={close}
-                >
-                    <CloseIcon />
-                </IconButton>
+                Login <CloseButton handleClose={close} />
             </DialogTitle>
             <DialogContent>
                 <FormGroup fullWidth size="small" sx={{ mt: 2 }}>
@@ -86,9 +76,6 @@ export default function RegisterModal() {
                     </Button>
                 </Box>
             </DialogContent>
-            {/* <DialogActions>
-                <Button onClick={close}>Close</Button>
-            </DialogActions> */}
         </Dialog>
     );
 }
