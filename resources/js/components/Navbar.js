@@ -79,10 +79,12 @@ export default function Navbar() {
     const user = useSelector((state) => state.authReducer.user);
 
     const logout = () => {
+        dispatch(setAuthenticated(false));
+
         axios.get("/sanctum/csrf-cookie").then(() => {
             axios
                 .get("/api/logout")
-                .then(() => dispatch(setAuthenticated(false)))
+                // .then(() => dispatch(setAuthenticated(false)))
                 .catch((err) => console.log({ err }));
         });
     };
@@ -142,7 +144,6 @@ export default function Navbar() {
                                 sx={{ ml: 1, mr: 2 }}
                                 className="font-montserrat"
                                 variant="body2"
-                                gutterBottom
                             >
                                 Welcome, {user?.user?.name || "-"}
                             </Typography>

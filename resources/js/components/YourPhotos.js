@@ -1,10 +1,8 @@
 import React from "react";
-import { Typography, CircularProgress } from "@mui/material";
+import { Typography, Box, CircularProgress } from "@mui/material";
 import Masonry from "@mui/lab/Masonry";
 import "animate.css";
 import axiosHelper from "../axiosHelper";
-import CategorySelector from "./CategorySelector";
-import { connect } from "react-redux";
 import MasonryPhotoItem from "./MasonryPhotoItem";
 
 const Layout = ({
@@ -40,7 +38,7 @@ const Layout = ({
     );
 };
 
-class ExplorePhotos extends React.Component {
+class YourPhotos extends React.Component {
     constructor(props) {
         super(props);
 
@@ -62,22 +60,15 @@ class ExplorePhotos extends React.Component {
                 };
             },
             () => {
-                axiosHelper
-                    .get(
-                        "/api/explore" +
-                            (this.props.selectedCategory === null
-                                ? ""
-                                : "/" + this.props.selectedCategory)
-                    )
-                    .then(({ data }) => {
-                        this.setState((prevState) => {
-                            return {
-                                ...prevState,
-                                images: data,
-                                isLoaded: true,
-                            };
-                        });
+                axiosHelper.get("/api/me/photos").then(({ data }) => {
+                    this.setState((prevState) => {
+                        return {
+                            ...prevState,
+                            images: data,
+                            isLoaded: true,
+                        };
                     });
+                });
             }
         );
     };
@@ -114,39 +105,27 @@ class ExplorePhotos extends React.Component {
 
     render() {
         return (
-            <>
+            <Box sx={{ mt: 3 }}>
                 <Typography
                     variant="p"
                     className="font-montserrat"
                     fontSize={20}
+                    sx={{ pt: 3, pb: 3 }}
                 >
-                    Explore
+                    Your Photos
                 </Typography>
-                <div
-                    style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        marginBottom: 20,
-                    }}
-                >
-                    <CategorySelector
-                        isLoaded={this.state.isLoaded}
+
+                <Box sx={{ mt: 3 }}>
+                    <Layout
+                        {...this.state}
                         fetchImages={this.fetchImages}
+                        onLoaded={this.onLoaded}
+                        onUnLoaded={this.onUnLoaded}
                     />
-                </div>
-                <Layout
-                    {...this.state}
-                    fetchImages={this.fetchImages}
-                    onLoaded={this.onLoaded}
-                    onUnLoaded={this.onUnLoaded}
-                />
-            </>
+                </Box>
+            </Box>
         );
     }
 }
 
-const mapDispatchToProps = (state) => {
-    return { selectedCategory: state.exploreReducer.selectedCategory };
-};
-
-export default connect(mapDispatchToProps)(ExplorePhotos);
+export default YourPhotos;

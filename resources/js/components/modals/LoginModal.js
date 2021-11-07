@@ -70,6 +70,8 @@ export default function LoginModal() {
                         }
                     );
 
+                    console.log({ err });
+
                     setValues((state) => {
                         return { ...state, waitingForCallback: false };
                     });

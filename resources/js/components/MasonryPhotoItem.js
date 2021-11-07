@@ -2,7 +2,7 @@ import React from "react";
 import MasonryItem from "@mui/lab/MasonryItem";
 import { convertPhotoUrl } from "../utils";
 
-export default function DailyPhotoItem({ img, onLoaded, onUnLoaded }) {
+export default function MasonryPhotoItem({ img, onLoaded, onUnLoaded }) {
     const [isLoaded, setIsLoaded] = React.useState(false);
     const [url, setUrl] = React.useState("");
 

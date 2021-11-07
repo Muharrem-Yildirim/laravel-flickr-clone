@@ -23,9 +23,11 @@ use App\Http\Controllers\UserController;
 /* PROTECTED ROUTES */
 
 Route::middleware("auth:sanctum")->group(function () {
-    Route::get("user", function (Request $request) {
+    Route::get("me", function (Request $request) {
         return $request->user();
     });
+    Route::get("me/photos", [UserController::class, "getMyPhotos"]);
+
     Route::get("refresh", [AuthController::class, "refresh"]);
     Route::get("logout", [AuthController::class, "logout"]);
 

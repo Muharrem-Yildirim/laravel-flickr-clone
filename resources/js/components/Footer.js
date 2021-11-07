@@ -3,7 +3,7 @@ import { Grid, Typography } from "@mui/material";
 import MuiLink from "@mui/material/Link";
 
 const Container = styled.div`
-    height: 200px;
+    height: 80px;
     position: relative;
     background: #212121;
     margin-top: auto;
@@ -50,9 +50,9 @@ function Footer() {
                         <li>
                             <Link href="/">Home</Link>
                         </li>
-                        <li>
+                        {/* <li>
                             <Link href="/">About</Link>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
             </Grid>

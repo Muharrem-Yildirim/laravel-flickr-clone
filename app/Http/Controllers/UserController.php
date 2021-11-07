@@ -11,4 +11,9 @@ class UserController extends Controller
     {
         return response()->json(Photo::where(["user_id" => $user_id])->get());
     }
+
+    public function getMyPhotos(Request $request)
+    {
+        return response()->json(Photo::where(["user_id" => $request->user()->id])->limit(10)->get());
+    }
 }
