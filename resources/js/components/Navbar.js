@@ -14,6 +14,7 @@ import {
     Grid,
     Box,
     AppBar,
+    Button,
 } from "@mui/material";
 
 import SearchIcon from "@mui/icons-material/Search";
@@ -74,10 +75,6 @@ const Logo = () => (
 export default function Navbar() {
     const dispatch = useDispatch();
 
-    const onClickUpload = () => {
-        dispatch(openModal("UPLOAD_PHOTO"));
-    };
-
     return (
         <AppBar position="static" color="success">
             <Toolbar>
@@ -120,11 +117,23 @@ export default function Navbar() {
                         color="inherit"
                         aria-label="menu"
                         sx={{ mr: 2 }}
-                        onClick={onClickUpload}
+                        onClick={() => dispatch(openModal("UPLOAD_PHOTO"))}
                     >
                         <UploadIcon />
                     </IconButton>
-                    {/* <Button color="inherit">Login</Button> */}
+                    <Button
+                        color="inherit"
+                        sx={{ mr: 1 }}
+                        onClick={() => dispatch(openModal("LOGIN"))}
+                    >
+                        Login
+                    </Button>
+                    <Button
+                        color="inherit"
+                        onClick={() => dispatch(openModal("REGISTER"))}
+                    >
+                        Register
+                    </Button>
                 </Grid>
             </Toolbar>
         </AppBar>

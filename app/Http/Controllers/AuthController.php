@@ -30,6 +30,7 @@ class AuthController extends Controller
         return response()->json(['user' => $user, 'token' => $user->createToken($user->name)->plainTextToken]);
     }
 
+
     public function register(Request $request)
     {
         $request->validate([

@@ -52,8 +52,6 @@ class DailyPhotos extends React.Component {
             isLoaded: false,
             loadedImagesCount: 0,
         };
-
-        axios.get("/sanctum/csrf-cookie").then(console.log);
     }
 
     fetchImages = () => {
