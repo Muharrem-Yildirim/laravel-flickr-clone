@@ -13,9 +13,11 @@ import { useDispatch } from "react-redux";
 import { closeModal } from "../../actions/modalActions";
 import { setAuthenticated } from "../../actions/authActions";
 import CloseButton from "./CloseButton";
+import { useSnackbar } from "notistack";
 
 export default function LoginModal() {
     const dispatch = useDispatch();
+    const { enqueueSnackbar } = useSnackbar();
 
     const close = () => {
         dispatch(closeModal("LOGIN"));
@@ -54,7 +56,12 @@ export default function LoginModal() {
                 })
                 .catch((err) => {
                     dispatch(setAuthenticated(false));
-                    alert("Wrong username or password");
+                    enqueueSnackbar(
+                        err.response?.data?.message || "Unknown error occured.",
+                        {
+                            variant: "error",
+                        }
+                    );
                 });
         });
     };

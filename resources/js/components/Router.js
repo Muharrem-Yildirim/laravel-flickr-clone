@@ -11,7 +11,10 @@ export default function Router() {
     const dispatch = useDispatch();
 
     React.useEffect(() => {
-        if (localStorage.getItem("isLoggedIn"))
+        if (
+            localStorage.getItem("isLoggedIn") === "true" &&
+            localStorage.getItem("user") !== "null"
+        )
             dispatch(
                 setAuthenticated(true, JSON.parse(localStorage.getItem("user")))
             );

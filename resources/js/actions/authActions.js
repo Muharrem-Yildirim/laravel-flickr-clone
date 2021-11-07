@@ -3,6 +3,7 @@ import axios from "../axios";
 
 export const setAuthenticated = (isLoggedIn, user) => {
     localStorage.setItem("isLoggedIn", isLoggedIn);
+    console.log(isLoggedIn);
 
     if (isLoggedIn == true) {
         localStorage.setItem("user", JSON.stringify(user));

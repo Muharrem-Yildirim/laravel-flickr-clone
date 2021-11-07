@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { openModal } from "../actions/modalActions";
 import { outlinedInputClasses } from "@mui/material/OutlinedInput";
 import { inputLabelClasses } from "@mui/material/InputLabel";
+import { setAuthenticated } from "../actions/authActions";
 
 import {
     InputAdornment,
@@ -76,6 +77,15 @@ export default function Navbar() {
     const dispatch = useDispatch();
     const isLoggedIn = useSelector((state) => state.authReducer.isLoggedIn);
 
+    const logout = () => {
+        axios.get("/sanctum/csrf-cookie").then(() => {
+            axios
+                .get("/api/logout")
+                .then(() => dispatch(setAuthenticated(false)))
+                .catch((err) => console.log({ err }));
+        });
+    };
+
     return (
         <AppBar position="static" color="success">
             <Toolbar>
@@ -127,7 +137,11 @@ export default function Navbar() {
                             >
                                 <UploadIcon />
                             </IconButton>
-                            <Button color="inherit" sx={{ mr: 1 }}>
+                            <Button
+                                color="inherit"
+                                sx={{ mr: 1 }}
+                                onClick={logout}
+                            >
                                 Logout
                             </Button>
                         </>

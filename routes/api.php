@@ -25,11 +25,14 @@ Route::middleware("auth:sanctum")->group(function () {
         return $request->user();
     });
     Route::get("refresh", [AuthController::class, "refresh"]);
+    Route::get("logout", [AuthController::class, "logout"]);
+
     Route::post("photo", [PhotoController::class, "upload"]);
 });
 
 
 /* UNPROTECTED ROUTES */
+
 Route::post("login", [AuthController::class, "login"]);
 Route::post("register", [AuthController::class, "register"]);
 

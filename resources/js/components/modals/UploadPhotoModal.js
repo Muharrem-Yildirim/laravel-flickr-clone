@@ -7,7 +7,7 @@ import { useSnackbar } from "notistack";
 
 export default function UploadPhotoModal() {
     const dispatch = useDispatch();
-    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+    const { enqueueSnackbar } = useSnackbar();
 
     const close = () => {
         dispatch(closeModal("UPLOAD_PHOTO"));
