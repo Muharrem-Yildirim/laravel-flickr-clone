@@ -6,9 +6,8 @@ export const setAuthenticated = (isLoggedIn, user) => {
 
     if (isLoggedIn == true) {
         localStorage.setItem("user", JSON.stringify(user));
-        axios.defaults.headers.Authorization = "Bearer " + user.token;
 
-        console.log(user);
+        axios.defaults.headers.Authorization = "Bearer " + user.token;
     } else localStorage.removeItem("user");
 
     return {
