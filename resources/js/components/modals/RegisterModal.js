@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 
 import React from "react";
+import axiosHelper from "../../axiosHelper";
 import { useDispatch } from "react-redux";
 import { closeModal } from "../../actions/modalActions";
 import { setAuthenticated } from "../../actions/authActions";
@@ -49,8 +50,8 @@ export default function RegisterModal() {
             return { ...state, waitingForCallback: true };
         });
 
-        axios.get("/sanctum/csrf-cookie").then(() => {
-            axios
+        axiosHelper.get("/sanctum/csrf-cookie").then(() => {
+            axiosHelper
                 .post("/api/register", {
                     name: values.name,
                     email: values.email,

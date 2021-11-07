@@ -1,15 +1,16 @@
 import { useRouteMatch } from "react-router-dom/cjs/react-router-dom.min";
-import axios from "../axios";
+import axiosHelper from "../axiosHelper";
+import cookieHelper from "../cookieHelper";
 
 export const setAuthenticated = (isLoggedIn, user) => {
-    localStorage.setItem("isLoggedIn", isLoggedIn);
+    cookieHelper.set("isLoggedIn", isLoggedIn, cookieHelper.options);
     console.log(isLoggedIn);
 
     if (isLoggedIn == true) {
-        localStorage.setItem("user", JSON.stringify(user));
+        cookieHelper.set("user", JSON.stringify(user), cookieHelper.options);
 
-        axios.defaults.headers.Authorization = "Bearer " + user.token;
-    } else localStorage.removeItem("user");
+        axiosHelper.defaults.headers.Authorization = "Bearer " + user.token;
+    } else cookieHelper.remove("user");
 
     return {
         type: "SET_AUTHENTICATED",

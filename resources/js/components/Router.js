@@ -4,6 +4,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { useDispatch } from "react-redux";
 import { setAuthenticated } from "../actions/authActions";
+import cookieHelper from "../cookieHelper";
 
 import Home from "../views/Home";
 
@@ -11,13 +12,12 @@ export default function Router() {
     const dispatch = useDispatch();
 
     React.useEffect(() => {
+        console.log(1, cookieHelper.get("user"));
         if (
-            localStorage.getItem("isLoggedIn") === "true" &&
-            localStorage.getItem("user") !== "null"
+            cookieHelper.get("isLoggedIn") === "true" &&
+            cookieHelper.get("user") !== "null"
         )
-            dispatch(
-                setAuthenticated(true, JSON.parse(localStorage.getItem("user")))
-            );
+            dispatch(setAuthenticated(true, cookieHelper.get("user")));
     });
 
     return (

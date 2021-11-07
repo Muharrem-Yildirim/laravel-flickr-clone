@@ -3,7 +3,7 @@ import { Typography } from "@mui/material";
 import Masonry from "@mui/lab/Masonry";
 import MasonryItem from "@mui/lab/MasonryItem";
 import "animate.css";
-import axios from "../axios";
+import axiosHelper from "../axiosHelper";
 import CategorySelector from "./CategorySelector";
 import { connect } from "react-redux";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -65,7 +65,7 @@ class DailyPhotos extends React.Component {
                 };
             },
             () => {
-                axios
+                axiosHelper
                     .get(
                         "/api/explore" +
                             (this.props.selectedCategory === null

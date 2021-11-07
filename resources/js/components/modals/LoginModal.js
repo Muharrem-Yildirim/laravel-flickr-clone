@@ -7,7 +7,7 @@ import {
     FormGroup,
     Box,
 } from "@mui/material";
-import axios from "../../axios";
+import axiosHelper from "../../axiosHelper";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { closeModal } from "../../actions/modalActions";
@@ -47,8 +47,8 @@ export default function LoginModal() {
             return { ...state, waitingForCallback: true };
         });
 
-        axios.get("/sanctum/csrf-cookie").then(() => {
-            axios
+        axiosHelper.get("/sanctum/csrf-cookie").then(() => {
+            axiosHelper
                 .post("/api/login", {
                     email: values.email,
                     password: values.password,
