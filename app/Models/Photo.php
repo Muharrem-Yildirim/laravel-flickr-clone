@@ -13,6 +13,7 @@ class Photo extends Model
 
     protected $fillable = [
         'url',
+        "user_id"
     ];
 
     protected $casts = [];
@@ -20,5 +21,10 @@ class Photo extends Model
     public function tags()
     {
         return $this->morphToMany(Tag::class, 'taggable');
+    }
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id');
     }
 }

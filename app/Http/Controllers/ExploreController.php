@@ -16,7 +16,7 @@ class ExploreController extends Controller
         return response()->json($photos);
     }
 
-    public function getByTagId(Request $request, $tag_id)
+    public function getById(Request $request, $tag_id)
     {
         $photos = Tag::with("photos.tags")->where("id", $tag_id)->get()->first();
 
@@ -25,7 +25,7 @@ class ExploreController extends Controller
         );
     }
 
-    public function getByTagName(Request $request, $tag_name)
+    public function getByName(Request $request, $tag_name)
     {
         $photos = Tag::with("photos.tags")->where("name", $tag_name)->get()->first();
 

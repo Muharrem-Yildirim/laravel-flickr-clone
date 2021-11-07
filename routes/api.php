@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\AuthController;
 use \App\Http\Controllers\ExploreController;
 use \App\Http\Controllers\PhotoController;
+use App\Http\Controllers\UserController;
+
 
 
 /*
@@ -37,5 +39,10 @@ Route::post("login", [AuthController::class, "login"]);
 Route::post("register", [AuthController::class, "register"]);
 
 Route::get("explore", [ExploreController::class, "all"]);
-Route::get("explore/{tag_id}", [ExploreController::class, "getByTagId"])->where("tag_id", "[0-9]+");
-Route::get("explore/{tag_name}", [ExploreController::class, "getByTagName"]);
+Route::get("explore/{tag_id}", [ExploreController::class, "getById"])->where("tag_id", "[0-9]+");
+Route::get("explore/{tag_name}", [ExploreController::class, "getByName"]);
+
+
+Route::get("photo/{photo_id}", [PhotoController::class, "getById"])->where("photo_id", "[0-9]+");
+
+Route::get("user/{user_id}/photos", [UserController::class, "getPhotosById"])->where("user_id", "[0-9]+");

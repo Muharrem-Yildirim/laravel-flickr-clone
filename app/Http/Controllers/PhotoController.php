@@ -36,11 +36,15 @@ class PhotoController extends Controller
 
                 Storage::disk('public')->put("uploads/photos/" . $newFilename,  file_get_contents($file));
 
-
                 $photo = new Photo();
                 $photo->url = $newFilename;
                 $photo->save();
             }
         }
+    }
+
+    public function getById(Request $request, $photo_id)
+    {
+        return response()->json(Photo::with("user")->findOrFail($photo_id));
     }
 }
