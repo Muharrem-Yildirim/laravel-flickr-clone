@@ -76,6 +76,7 @@ const Logo = () => (
 export default function Navbar() {
     const dispatch = useDispatch();
     const isLoggedIn = useSelector((state) => state.authReducer.isLoggedIn);
+    const user = useSelector((state) => state.authReducer.user);
 
     const logout = () => {
         axios.get("/sanctum/csrf-cookie").then(() => {
@@ -137,6 +138,14 @@ export default function Navbar() {
                             >
                                 <UploadIcon />
                             </IconButton>
+                            <Typography
+                                sx={{ ml: 1, mr: 2 }}
+                                className="font-montserrat"
+                                variant="body2"
+                                gutterBottom
+                            >
+                                Welcome, {user?.user?.name || "-"}
+                            </Typography>
                             <Button
                                 color="inherit"
                                 sx={{ mr: 1 }}
