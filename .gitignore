@@ -16,3 +16,5 @@ storage/*.key
 Homestead.yaml
 Homestead.json
 /.vagrant
+storage/logs/laravel.log
+*.log

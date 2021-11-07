@@ -40,12 +40,13 @@ export default function UploadPhotoModal() {
                     })
                     .catch(function (err) {
                         enqueueSnackbar(
-                            err.response?.data?.error ||
+                            err.response?.data?.message ||
                                 "Unknown error occured.",
                             {
                                 variant: "error",
                             }
                         );
+                        console.log({ err });
                     });
             }}
             showPreviews={true}

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { openModal } from "../actions/modalActions";
 import { outlinedInputClasses } from "@mui/material/OutlinedInput";
 import { inputLabelClasses } from "@mui/material/InputLabel";
@@ -74,6 +74,7 @@ const Logo = () => (
 
 export default function Navbar() {
     const dispatch = useDispatch();
+    const isLoggedIn = useSelector((state) => state.authReducer.isLoggedIn);
 
     return (
         <AppBar position="static" color="success">
@@ -111,29 +112,42 @@ export default function Navbar() {
                     /> */}
 
                     <Box sx={{ flexGrow: 1 }} />
-                    <IconButton
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        aria-label="menu"
-                        sx={{ mr: 2 }}
-                        onClick={() => dispatch(openModal("UPLOAD_PHOTO"))}
-                    >
-                        <UploadIcon />
-                    </IconButton>
-                    <Button
-                        color="inherit"
-                        sx={{ mr: 1 }}
-                        onClick={() => dispatch(openModal("LOGIN"))}
-                    >
-                        Login
-                    </Button>
-                    <Button
-                        color="inherit"
-                        onClick={() => dispatch(openModal("REGISTER"))}
-                    >
-                        Register
-                    </Button>
+
+                    {isLoggedIn ? (
+                        <>
+                            <IconButton
+                                size="large"
+                                edge="start"
+                                color="inherit"
+                                aria-label="menu"
+                                sx={{ mr: 2 }}
+                                onClick={() =>
+                                    dispatch(openModal("UPLOAD_PHOTO"))
+                                }
+                            >
+                                <UploadIcon />
+                            </IconButton>
+                            <Button color="inherit" sx={{ mr: 1 }}>
+                                Logout
+                            </Button>
+                        </>
+                    ) : (
+                        <>
+                            <Button
+                                color="inherit"
+                                sx={{ mr: 1 }}
+                                onClick={() => dispatch(openModal("LOGIN"))}
+                            >
+                                Login
+                            </Button>
+                            <Button
+                                color="inherit"
+                                onClick={() => dispatch(openModal("REGISTER"))}
+                            >
+                                Register
+                            </Button>
+                        </>
+                    )}
                 </Grid>
             </Toolbar>
         </AppBar>

@@ -18,17 +18,21 @@ use \App\Http\Controllers\PhotoController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+/* PROTECTED ROUTES */
+
+Route::middleware("auth:sanctum")->group(function () {
+    Route::get("user", function (Request $request) {
+        return $request->user();
+    });
+    Route::get("refresh", [AuthController::class, "refresh"]);
+    Route::post("photo", [PhotoController::class, "upload"]);
 });
-Route::post("/token", [AuthController::class, "token"]);
-Route::post("/register", [AuthController::class, "register"]);
 
-Route::middleware('auth:sanctum')->get("/user", [AuthController::class, 'profile']);
-Route::middleware('auth:sanctum')->get("/refresh", [AuthController::class, 'refresh']);
 
-Route::get('explore', [ExploreController::class, 'all']);
-Route::get('explore/{tag_id}', [ExploreController::class, 'getByTagId'])->where('tag_id', '[0-9]+');
-Route::get('explore/{tag_name}', [ExploreController::class, 'getByTagName']);
+/* UNPROTECTED ROUTES */
+Route::post("login", [AuthController::class, "login"]);
+Route::post("register", [AuthController::class, "register"]);
 
-Route::post('photo', [PhotoController::class, 'upload']);
+Route::get("explore", [ExploreController::class, "all"]);
+Route::get("explore/{tag_id}", [ExploreController::class, "getByTagId"])->where("tag_id", "[0-9]+");
+Route::get("explore/{tag_name}", [ExploreController::class, "getByTagName"]);

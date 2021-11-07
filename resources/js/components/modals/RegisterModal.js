@@ -46,7 +46,7 @@ export default function RegisterModal() {
                 Register <CloseButton handleClose={close} />
             </DialogTitle>
             <DialogContent>
-                <FormGroup fullWidth size="small" sx={{ mt: 2 }}>
+                <FormGroup size="small" sx={{ mt: 2 }}>
                     <TextField
                         id="email"
                         size="small"
@@ -58,7 +58,7 @@ export default function RegisterModal() {
                         label="E-mail"
                     ></TextField>
                 </FormGroup>
-                <FormGroup fullWidth size="small" sx={{ mt: 2 }}>
+                <FormGroup size="small" sx={{ mt: 2 }}>
                     <TextField
                         id="password"
                         size="small"

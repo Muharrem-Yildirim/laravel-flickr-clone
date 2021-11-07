@@ -7,9 +7,11 @@ import {
     FormGroup,
     Box,
 } from "@mui/material";
+import axios from "../../axios";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { closeModal } from "../../actions/modalActions";
+import { setAuthenticated } from "../../actions/authActions";
 import CloseButton from "./CloseButton";
 
 export default function LoginModal() {
@@ -39,13 +41,31 @@ export default function LoginModal() {
         });
     };
 
+    const login = () => {
+        axios.get("/sanctum/csrf-cookie").then(() => {
+            axios
+                .post("/api/login", {
+                    email: values.email,
+                    password: values.password,
+                })
+                .then(({ data }) => {
+                    dispatch(setAuthenticated(true, data));
+                    close();
+                })
+                .catch((err) => {
+                    dispatch(setAuthenticated(false));
+                    alert("Wrong username or password");
+                });
+        });
+    };
+
     return (
         <Dialog open={true} fullWidth maxWidth="xs" onClose={close}>
             <DialogTitle>
                 Login <CloseButton handleClose={close} />
             </DialogTitle>
             <DialogContent>
-                <FormGroup fullWidth size="small" sx={{ mt: 2 }}>
+                <FormGroup size="small" sx={{ mt: 2 }}>
                     <TextField
                         id="email"
                         size="small"
@@ -57,7 +77,7 @@ export default function LoginModal() {
                         label="E-mail"
                     ></TextField>
                 </FormGroup>
-                <FormGroup fullWidth size="small" sx={{ mt: 2 }}>
+                <FormGroup size="small" sx={{ mt: 2 }}>
                     <TextField
                         id="password"
                         size="small"
@@ -71,7 +91,7 @@ export default function LoginModal() {
                 </FormGroup>
 
                 <Box display="flex" justifyContent="center">
-                    <Button sx={{ mt: 3 }} variant="contained">
+                    <Button sx={{ mt: 3 }} variant="contained" onClick={login}>
                         Login
                     </Button>
                 </Box>
