@@ -30,7 +30,6 @@ export default function RegisterModal() {
         password: "",
 
         waitingForCallback: false,
-        callbackMessage: "",
     };
 
     const [values, setValues] = React.useState(initialState);
@@ -46,6 +45,10 @@ export default function RegisterModal() {
     };
 
     const register = () => {
+        setValues((state) => {
+            return { ...state, waitingForCallback: true };
+        });
+
         axios.get("/sanctum/csrf-cookie").then(() => {
             axios
                 .post("/api/register", {
@@ -55,16 +58,26 @@ export default function RegisterModal() {
                 })
                 .then(({ data }) => {
                     dispatch(setAuthenticated(true, data));
+
                     close();
+
+                    setValues((state) => {
+                        return { ...state, waitingForCallback: false };
+                    });
                 })
                 .catch((err) => {
                     dispatch(setAuthenticated(false));
+
                     enqueueSnackbar(
                         err.response?.data?.message || "Unknown error occured.",
                         {
                             variant: "error",
                         }
                     );
+
+                    setValues((state) => {
+                        return { ...state, waitingForCallback: false };
+                    });
                 });
         });
     };
@@ -117,6 +130,7 @@ export default function RegisterModal() {
                         sx={{ mt: 3 }}
                         onClick={register}
                         variant="contained"
+                        disabled={values.waitingForCallback}
                     >
                         Register
                     </Button>

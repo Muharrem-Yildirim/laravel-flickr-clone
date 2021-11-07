@@ -28,7 +28,6 @@ export default function LoginModal() {
         password: "",
 
         waitingForCallback: false,
-        callbackMessage: "",
     };
 
     const [values, setValues] = React.useState(initialState);
@@ -44,6 +43,10 @@ export default function LoginModal() {
     };
 
     const login = () => {
+        setValues((state) => {
+            return { ...state, waitingForCallback: true };
+        });
+
         axios.get("/sanctum/csrf-cookie").then(() => {
             axios
                 .post("/api/login", {
@@ -53,6 +56,10 @@ export default function LoginModal() {
                 .then(({ data }) => {
                     dispatch(setAuthenticated(true, data));
                     close();
+
+                    setValues((state) => {
+                        return { ...state, waitingForCallback: false };
+                    });
                 })
                 .catch((err) => {
                     dispatch(setAuthenticated(false));
@@ -62,6 +69,10 @@ export default function LoginModal() {
                             variant: "error",
                         }
                     );
+
+                    setValues((state) => {
+                        return { ...state, waitingForCallback: false };
+                    });
                 });
         });
     };
@@ -98,7 +109,12 @@ export default function LoginModal() {
                 </FormGroup>
 
                 <Box display="flex" justifyContent="center">
-                    <Button sx={{ mt: 3 }} variant="contained" onClick={login}>
+                    <Button
+                        sx={{ mt: 3 }}
+                        variant="contained"
+                        onClick={login}
+                        disabled={values.waitingForCallback}
+                    >
                         Login
                     </Button>
                 </Box>
